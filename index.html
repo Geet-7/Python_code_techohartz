@@ -1,0 +1,3425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Python Bootcamp - Interactive Presentation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --accent: #d97706;
+            --danger: #dc2626;
+            --purple: #7c3aed;
+            --cyan: #0891b2;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --code-bg: #1e1e2e;
+        }
+
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            color: var(--dark);
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+        }
+
+        .reveal h1 { font-size: 2.2em; margin-bottom: 0.5em; }
+        .reveal h2 { font-size: 1.6em; margin-bottom: 0.6em; }
+        .reveal h3 { font-size: 1.3em; margin-bottom: 0.5em; }
+        .reveal h4 { font-size: 1.1em; margin-bottom: 0.4em; }
+
+        .reveal p, .reveal li {
+            font-size: 0.85em;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        .reveal ul { margin-left: 0; }
+        .reveal li { margin-bottom: 0.5em; }
+
+        .reveal pre {
+            background: var(--code-bg);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75em;
+            line-height: 1.5;
+            text-align: left;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .reveal code {
+            font-family: 'JetBrains Mono', monospace;
+            background: #e2e8f0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .reveal pre code {
+            background: transparent;
+            padding: 0;
+            font-size: 0.9em;
+        }
+
+        /* Slide Types */
+        .slide-title {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white !important;
+        }
+
+        .slide-title h1, .slide-title h2, .slide-title p {
+            color: white !important;
+        }
+
+        .slide-concept { border-left: 6px solid var(--primary); }
+        .slide-example { border-left: 6px solid var(--secondary); }
+        .slide-tip { border-left: 6px solid var(--accent); }
+        .slide-mistake { border-left: 6px solid var(--danger); }
+        .slide-interview { border-left: 6px solid var(--purple); }
+        .slide-practice { border-left: 6px solid var(--cyan); }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 15px;
+        }
+
+        .badge-concept { background: #dbeafe; color: var(--primary); }
+        .badge-example { background: #d1fae5; color: var(--secondary); }
+        .badge-tip { background: #fef3c7; color: var(--accent); }
+        .badge-mistake { background: #fee2e2; color: var(--danger); }
+        .badge-interview { background: #ede9fe; color: var(--purple); }
+        .badge-practice { background: #cffafe; color: var(--cyan); }
+
+        /* Content Boxes */
+        .box {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .box-blue { background: #eff6ff; border: 1px solid #bfdbfe; }
+        .box-green { background: #f0fdf4; border: 1px solid #bbf7d0; }
+        .box-orange { background: #fffbeb; border: 1px solid #fde68a; }
+        .box-red { background: #fef2f2; border: 1px solid #fecaca; }
+        .box-purple { background: #faf5ff; border: 1px solid #e9d5ff; }
+        .box-cyan { background: #ecfeff; border: 1px solid #a5f3fc; }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover { background: var(--primary-dark); }
+
+        /* Table of Contents */
+        .toc {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            text-align: left;
+            font-size: 0.8em;
+        }
+
+        .toc-item {
+            padding: 8px 12px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .toc-item:hover { background: #e2e8f0; }
+
+        /* Quiz Styles */
+        .quiz-option {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            margin: 8px 0;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.85em;
+        }
+
+        .quiz-option:hover { border-color: var(--primary); }
+        .quiz-option.correct { background: #f0fdf4; border-color: var(--secondary); }
+        .quiz-option.wrong { background: #fef2f2; border-color: var(--danger); }
+
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            text-align: left;
+        }
+
+        /* Safe Zone */
+        .slides { padding: 60px !important; }
+        .reveal .slides section { padding: 40px !important; }
+
+        /* Print Styles */
+        @media print {
+            .nav-controls, .progress-bar { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1: Title -->
+            <section class="slide-title">
+                <h1>Complete Python Bootcamp</h1>
+                <p style="font-size: 1.2em; margin-top: 30px;">From Zero to Hero in 30 Days</p>
+                <p style="font-size: 0.9em; margin-top: 20px; opacity: 0.9;">Master Python Programming with Real-World Projects</p>
+                <div style="margin-top: 60px;">
+                    <p style="font-size: 0.8em;">Interactive Presentation | 180+ Slides</p>
+                </div>
+            </section>
+
+            <!-- Slide 2: Course Overview -->
+            <section>
+                <span class="badge badge-concept">Overview</span>
+                <h2>What You Will Learn</h2>
+                <div class="two-col" style="margin-top: 30px;">
+                    <div class="box box-blue">
+                        <h4>Part 1: Fundamentals (15 Days)</h4>
+                        <ul>
+                            <li>Python Basics and Syntax</li>
+                            <li>Data Types and Structures</li>
+                            <li>Control Flow and Functions</li>
+                            <li>File Handling and OOP</li>
+                            <li>4 Real Projects</li>
+                        </ul>
+                    </div>
+                    <div class="box box-green">
+                        <h4>Part 2: Advanced (15 Days)</h4>
+                        <ul>
+                            <li>Advanced Python Concepts</li>
+                            <li>NumPy and Pandas</li>
+                            <li>Data Visualization</li>
+                            <li>Real-World Applications</li>
+                            <li>Capstone Project</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3: Table of Contents -->
+            <section>
+                <span class="badge badge-concept">Navigation</span>
+                <h2>Course Modules</h2>
+                <div class="toc" style="margin-top: 20px;">
+                    <div class="toc-item">1. Introduction to Programming</div>
+                    <div class="toc-item">2. Python Fundamentals</div>
+                    <div class="toc-item">3. Strings and Collections</div>
+                    <div class="toc-item">4. Control Flow</div>
+                    <div class="toc-item">5. Functions</div>
+                    <div class="toc-item">6. Modules and Packages</div>
+                    <div class="toc-item">7. Exception Handling</div>
+                    <div class="toc-item">8. File Handling</div>
+                    <div class="toc-item">9. Introduction to OOP</div>
+                    <div class="toc-item">10. Advanced Functions</div>
+                    <div class="toc-item">11. Advanced Modules</div>
+                    <div class="toc-item">12. Advanced OOP</div>
+                </div>
+            </section>
+
+            <!-- MODULE 1: Introduction to Programming -->
+            <!-- Slide 4: Module 1 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 1</span>
+                <h2>Introduction to Programming and Python</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand what programming is and why it matters</li>
+                        <li>Learn about Python and its features</li>
+                        <li>Set up your development environment</li>
+                        <li>Write and run your first Python program</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 5: What is Programming? -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Concept</span>
+                <h2>What is Programming?</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Programming is the process of creating a set of instructions that tell a computer how to perform a task.</p>
+                </div>
+                <div style="text-align: left; margin-top: 20px;">
+                    <h4>Why Programming Exists</h4>
+                    <ul>
+                        <li>Computers need precise instructions to do anything</li>
+                        <li>Humans use programming languages to communicate with machines</li>
+                        <li>Programs automate repetitive tasks</li>
+                        <li>Software powers modern technology</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 6: Programming in Real World -->
+            <section class="slide-example">
+                <span class="badge badge-example">Real World</span>
+                <h2>Programming in the Real World</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Everyday Applications</h4>
+                        <ul>
+                            <li>Smartphones and Apps</li>
+                            <li>Websites and E-commerce</li>
+                            <li>Banking Systems</li>
+                            <li>Medical Equipment</li>
+                            <li>Transportation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Industries</h4>
+                        <ul>
+                            <li>Healthcare</li>
+                            <li>Finance</li>
+                            <li>Education</li>
+                            <li>Entertainment</li>
+                            <li>Space Exploration</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: What is Python? -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Concept</span>
+                <h2>What is Python?</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Python</strong> is a high-level, interpreted programming language created by Guido van Rossum in 1991.</p>
+                </div>
+                <div style="text-align: left; margin-top: 20px;">
+                    <h4>Key Characteristics</h4>
+                    <ul>
+                        <li><strong>High-level:</strong> Close to human language, easy to read</li>
+                        <li><strong>Interpreted:</strong> No compilation needed, runs line by line</li>
+                        <li><strong>Dynamically Typed," + " Typed:</strong> Variable types determined at runtime</li>
+                        <li><strong>Object-Oriented:</strong> Supports OOP principles</li>
+                        <li><strong>General Purpose:</strong> Used for web, data, AI, automation</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 8: Python Features -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Features</span>
+                <h2>Features of Python</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Language Features</h4>
+                        <ul>
+                            <li>Simple and Readable Syntax</li>
+                            <li>Cross-Platform</li>
+                            <li>Large Standard Library</li>
+                            <li>Extensive Third-Party Packages</li>
+                            <li>Automatic Memory Management</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Development Features</h4>
+                        <ul>
+                            <li>Interactive Mode</li>
+                            <li>Easy Debugging</li>
+                            <li>Rapid Prototyping</li>
+                            <li>Integration Capabilities</li>
+                            <li>Multiple Programming Paradigms</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 9: Python Applications -->
+            <section class="slide-example">
+                <span class="badge badge-example">Applications</span>
+                <h2>Applications of Python</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div class="box box-green">
+                        <h4>Web Development</h4>
+                        <p>Django, Flask, FastAPI</p>
+                    </div>
+                    <div class="box box-green">
+                        <h4>Data Science</h4>
+                        <p>Pandas, NumPy, SciPy</p>
+                    </div>
+                    <div class="box box-green">
+                        <h4>Machine Learning</h4>
+                        <p>TensorFlow, PyTorch, Scikit-learn</p>
+                    </div>
+                    <div class="box box-green">
+                        <h4>Automation</h4>
+                        <p>Selenium, BeautifulSoup</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 10: Installing Python -->
+            <section class="slide-practice">
+                <span class="badge badge-practice">Setup</span>
+                <h2>Installing Python</h2>
+                <div class="box box-cyan" style="margin-top: 20px;">
+                    <h4>Step 1: Download Python</h4>
+                    <p>Visit <code>python.org</code> and download the latest version for your OS</p>
+                </div>
+                <div class="box box-cyan">
+                    <h4>Step 2: Installation</h4>
+                    <ul>
+                        <li>Windows: Run installer, check "Add to PATH"</li>
+                        <li>Mac: Use installer or Homebrew</li>
+                        <li>Linux: Usually pre-installed</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 11: Setting Up VS Code -->
+            <section class="slide-practice">
+                <span class="badge badge-practice">Setup</span>
+                <h2>Setting Up VS Code</h2>
+                <div style="text-align: left; margin-top: 20px;">
+                    <h4>Steps</h4>
+                    <ol>
+                        <li>Download VS Code from <code>code.visualstudio.com</code></li>
+                        <li>Install Python extension</li>
+                        <li>Select Python interpreter</li>
+                        <li>Create a new file with <code>.py</code> extension</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Slide 12: First Python Program -->
+            <section class="slide-example">
+                <span class="badge badge-example">Example</span>
+                <h2>Your First Python Program</h2>
+                <pre><code class="language-python"># This is a comment
+# Print a message to the screen
+print("Hello, World!")
+print("Welcome to Python!")</code></pre>
+                <div class="box box-green" style="margin-top: 20px;">
+                    <h4>Output</h4>
+                    <pre><code>Hello, World!
+Welcome to Python!</code></pre>
+                </div>
+            </section>
+
+            <!-- Slide 13: Python Syntax -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Syntax</span>
+                <h2>Python Syntax Rules</h2>
+                <div style="text-align: left; margin-top: 20px;">
+                    <ul>
+                        <li><strong>Case Sensitive:</strong> <code>name</code> and <code>Name</code> are different</li>
+                        <li><strong>Indentation:</strong> Uses spaces (usually 4) not braces</li>
+                        <li><strong>Comments:</strong> Start with <code>#</code></li>
+                        <li><strong>Statements:</strong> One per line (usually)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 14: Comments -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Concept</span>
+                <h2>Comments annotations in Python</h2>
+                <pre><code class="language-python"># Single line comment
+
+"""
+Multi-line comment
+This can span multiple lines
+Used for documentation
+"""
+
+# Comments are ignored by Python
+# They help explain code to humans
+print("Comments do not affect output")</code></pre>
+            </section>
+
+            <!-- Slide 15: Module 1 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 1 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Programming is giving instructions to computers</li>
+                        <li>Python is a high-level, interpreted language</li>
+                        <li>Python is used in web, data, AI, and automation</li>
+                        <li>Setup involves installing Python and an IDE</li>
+                        <li>Python uses indentation for code blocks</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 2: Python Fundamentals -->
+            <!-- Slide 16: Module 2 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 2</span>
+                <h2>Python Fundamentals</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand variables and data types</li>
+                        <li>Learn about operators</li>
+                        <li>Master input and output operations</li>
+                        <li>Work with type casting</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 17: Variables -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Concept</span>
+                <h2>Variables</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> A variable is a named container that stores data in memory.</p>
+                </div>
+                <div style="text-align: left; margin-top: 20px;">
+                    <h4>Variable Rules</h4>
+                    <ul>
+                        <li>Must start with letter or underscore</li>
+                        <li>Can contain letters, numbers, underscores</li>
+                        <li>Case sensitive</li>
+                        <li>Cannot use reserved keywords</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 18: Variable Examples -->
+            <section class="slide-example">
+                <span class="badge badge-example">Example</span>
+                <h2>Creating Variables</h2>
+                <pre><code class="language-python"># Valid variable names
+name = "Alice"
+age = 25
+_is_valid = True
+user_name = "bob123"
+
+# Invalid (will cause errors)
+# 2name = "wrong"      # Starts with number
+# my-name = "wrong"    # Contains hyphen
+# my name = "wrong"    # Contains space
+
+print(name)      # Output: Alice
+print(age)       # Output: 25</code></pre>
+            </section>
+
+            <!-- Slide 19: Data Types -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Concept</span>
+                <h2>Data Types in Python</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Basic Types</h4>
+                        <ul>
+                            <li><strong>int</strong> - Integer numbers</li>
+                            <li><strong>float</strong> - Decimal numbers</li>
+                            <li><strong>str</strong> - Text strings</li>
+                            <li><strong>bool</strong> - True/False</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Collection Types</h4>
+                        <ul>
+                            <li><strong>list</strong> - Ordered collection</li>
+                            <li><strong>tuple</strong> - Immutable ordered</li>
+                            <li><strong>set</strong> - Unordered unique</li>
+                            <li><strong>dict</strong> - Key-value pairs</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 20: Integer Type -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Data Type</span>
+                <h2>Integer (int)</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Whole numbers without decimal points.</p>
+                </div>
+                <pre><code class="language-python"># Integer examples
+age = 25
+temperature = -10
+zero = 0
+big_number = 1000000
+
+# Check type
+print(type(age))  # Output: <class 'int'>
+
+# Integer operations
+sum_val = 10 + 5    # Addition
+diff = 10 - 5       # Subtraction
+product = 10 * 5    # Multiplication</code></pre>
+            </section>
+
+            <!-- Slide 21: Float Type -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Data Type</span>
+                <h2>Float (float)</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Numbers with decimal points.</p>
+                </div>
+                <pre><code class="language-python"># Float examples
+price = 19.99
+pi = 3.14159
+temperature = -5.5
+
+# Check type
+print(type(price))  # Output: <class 'float'>
+
+# Float operations
+result = 10.5 + 2.5   # 13.0
+division = 10 / 3     # 3.333...
+
+# Scientific notation
+big = 1.5e6    # 1500000.0</code></pre>
+            </section>
+
+            <!-- Slide 22: String Type -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Data Type</span>
+                <h2>String (str)</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Sequence of characters enclosed in quotes.</p>
+                </div>
+                <pre><code class="language-python"># String examples
+single = 'Hello'
+double = "World"
+multiline = """This is
+a multiline
+string"""
+
+# String operations
+name = "Alice"
+print(len(name))      # Length: 5
+print(name[0])        # First character: A
+print(name[-1])       # Last character: e</code></pre>
+            </section>
+
+            <!-- Slide 23: Boolean Type -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Data Type</span>
+                <h2>Boolean (bool)</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Represents True or False values.</p>
+                </div>
+                <pre><code class="language-python"># Boolean examples
+is_active = True
+is_admin = False
+
+# Boolean operations
+print(True and False)   # False
+print(True or False)    # True
+print(not True)         # False
+
+# Comparison returns boolean
+print(5 > 3)            # True
+print(10 == 20)         # False</code></pre>
+            </section>
+
+            <!-- Slide 24: Input and Output -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Concept</span>
+                <h2>Input and Output</h2>
+                <div style="text-align: left; margin-top: 20px;">
+                    <h4>Output with print()</h4>
+                    <pre><code class="language-python"># Basic output
+print("Hello, World!")
+print("Name:", "Alice", "Age:", 25)
+
+# Formatted output
+name = "Bob"
+age = 30
+print(f"Name: {name}, Age: {age}")</code></pre>
+                </div>
+            </section>
+
+            <!-- Slide 25: Input Function -->
+            <section class="slide-example">
+                <span class="badge badge-example">Example</span>
+                <h2>Getting User Input</h2>
+                <pre><code class="language-python"># Get user input
+name =" + " input("Enter your name: ")
+age = input("Enter your age: ")
+
+# Display the input
+print(f"Hello, {name}!")
+print(f"You are {age} years old.")
+
+# Note: input() always returns a string
+# Convert to int for numbers
+age_int = int(age)</code></pre>
+            </section>
+
+            <!-- Slide 26: Type Casting -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Concept</span>
+                <h2>Type Casting</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Converting one data type to another.</p>
+                </div>
+                <pre><code class="language-python"># String to integer
+age_str = "25"
+age = int(age_str)      # 25
+
+# Integer to string
+num = 100
+num_str = str(num)      # "100"
+
+# String to float
+price_str = "19.99"
+price = float(price_str)  # 19.99
+
+# Integer to float
+x = float(5)            # 5.0</code></pre>
+            </section>
+
+            <!-- Slide 27: Arithmetic Operators -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Operators</span>
+                <h2>Arithmetic Operators</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Basic Operators</h4>
+                        <ul>
+                            <li><code>+</code> Addition</li>
+                            <li><code>-</code> Subtraction</li>
+                            <li><code>*</code> Multiplication</li>
+                            <li><code>/</code> Division</li>
+                            <li><code>//</code> Floor Division</li>
+                            <li><code>%</code> Modulus</li>
+                            <li><code>**</code> Exponentiation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Examples</h4>
+                        <pre><code class="language-python">a, b = 10, 3
+print(a + b)   # 13
+print(a - b)   # 7
+print(a * b)   # 30
+print(a / b)   # 3.333
+print(a // b)  # 3
+print(a % b)   # 1
+print(a ** b)  # 1000</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 28: Comparison Operators -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Operators</span>
+                <h2>Comparison Operators</h2>
+                <div style="text-align: left; margin-top: 20px;">
+                    <ul>
+                        <li><code>==</code> Equal to</li>
+                        <li><code>!=</code> Not equal to</li>
+                        <li><code>></code> Greater than</li>
+                        <li><code><</code> Less than</li>
+                        <li><code>>=</code> Greater than or equal</li>
+                        <li><code><=</code> Less than or equal</li>
+                    </ul>
+                </div>
+                <pre><code class="language-python">x, y = 10, 20
+print(x == y)   # False
+print(x != y)   # True
+print(x > y)    # False
+print(x < y)    # True</code></pre>
+            </section>
+
+            <!-- Slide 29: Logical Operators -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Operators</span>
+                <h2>Logical Operators</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Operators</h4>
+                        <ul>
+                            <li><code>and</code> - Both must be True</li>
+                            <li><code>or</code> - At least one True</li>
+                            <li><code>not</code> - Inverts the value</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Examples</h4>
+                        <pre><code class="language-python">x, y = True, False
+print(x and y)  # False
+print(x or y)   # True
+print(not x)    # False
+
+# Practical example
+age = 25
+is_student = False
+print(age > 18 and not is_student)</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 30: Assignment Operators -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Operators</span>
+                <h2>Assignment Operators</h2>
+                <div style="text-align: left; margin-top: 20px;">
+                    <ul>
+                        <li><code>=</code> Simple assignment</li>
+                        <li><code>+=</code> Add and assign</li>
+                        <li><code>-=</code> Subtract and assign</li>
+                        <li><code>*=</code> Multiply and assign</li>
+                        <li><code>/=</code> Divide and assign</li>
+                    </ul>
+                </div>
+                <pre><code class="language-python">x = 10
+x += 5   # x = x + 5, x is now 15
+x -= 3   # x = x - 3, x is now 12
+x *= 2   # x = x * 2, x is now 24</code></pre>
+            </section>
+
+            <!-- Slide 31: Module 2 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 2 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Variables store data in memory</li>
+                        <li>Python has int, float, str, bool types</li>
+                        <li>Use input() for user input, print() for output</li>
+                        <li>Type casting converts between types</li>
+                        <li>Operators perform arithmetic, comparison, and logic</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 3: Strings and Collections -->
+            <!-- Slide 32: Module 3 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 3</span>
+                <h2>Strings and Collections</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Master string operations and methods</li>
+                        <li>Work with lists, tuples, sets, and dictionaries</li>
+                        <li>Understand collection operations</li>
+                        <li>Apply string and collection techniques</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 33: String Operations -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Strings</span>
+                <h2>String Operations</h2>
+                <pre><code class="language-python"># Concatenation
+first = "Hello"
+second = "World"
+result = first + " " + second  # "Hello World"
+
+# Repetition
+repeated = "Ha" * 3  # "HaHaHa"
+
+# Length
+print(len("Python"))  # 6
+
+# Membership
+print("Py" in "Python")  # True</code></pre>
+            </section>
+
+            <!-- Slide 34: String Methods -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Strings</span>
+                <h2>String Methods</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Common Methods</h4>
+                        <ul>
+                            <li><code>upper()</code> - Uppercase</li>
+                            <li><code>lower()</code> - Lowercase</li>
+                            <li><code>title()</code> - Title Case</li>
+                            <li><code>strip()</code> - Remove whitespace</li>
+                            <li><code>replace()</code> - Replace text</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Examples</h4>
+                        <pre><code class="language-python">text = "  Hello World  "
+print(text.upper())     # "  HELLO WORLD  "
+print(text.strip())     # "Hello World"
+print(text.replace("World", "Python"))</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 35: String Formatting -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Strings</span>
+                <h2>String Formatting</h2>
+                <pre><code class="language-python"># f-strings (recommended)
+name = "Alice"
+age = 25
+print(f"Name: {name}, Age: {age}")
+
+# format() method
+print("Name: {}, Age: {}".format(name, age))
+
+# Percentage formatting
+print("Name: %s, Age: %d" % (name, age))
+
+# Formatting numbers
+pi = 3.14159
+print(f"Pi: {pi:.2f}")  # Pi: 3.14</code></pre>
+            </section>
+
+            <!-- Slide 36: String Slicing -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Strings</span>
+                <h2>String Slicing</h2>
+                <pre><code class="language-python">text = "Python"
+
+# Basic slicing
+print(text[0:2])    # "Py"
+print(text[2:5])    # "tho"
+print(text[:3])     # "Pyt"
+print(text[3:])     # "hon"
+
+# Negative indexing
+print(text[-2:])    # "on"
+print(text[:-2])    # "Pyth"
+
+# Step
+print(text[::2])    # "Pto"
+print(text[::-1])   # "nohtyP" (reverse)</code></pre>
+            </section>
+
+            <!-- Slide 37: Lists -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Collections</span>
+                <h2>Lists</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Ordered, mutable collection of items.</p>
+                </div>
+                <pre><code class="language-python"># Creating lists
+fruits = ["apple", "banana", "cherry"]
+numbers = [1, 2, 3, 4, 5]
+mixed = [1, "hello", 3.14, True]
+
+# Empty list
+empty = []
+empty = list()</code></pre>
+            </section>
+
+            <!-- Slide 38: List Indexing and Slicing -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Lists</span>
+                <h2>List Indexing and Slicing</h2>
+                <pre><code class="language-python">fruits = ["apple", "banana", "cherry", "date"]
+
+# Indexing
+print(fruits[0])     # "apple"
+print(fruits[-1])    # "date"
+
+# Slicing
+print(fruits[1:3])   # ["banana", "cherry"]
+print(fruits[:2])    # ["apple", "banana"]
+print(fruits[::2])   # ["apple", "cherry"]</code></pre>
+            </section>
+
+            <!-- Slide 39: Adding Elements to Lists -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Lists</span>
+                <h2>Adding Elements to Lists</h2>
+                <pre><code class="language-python">fruits = ["apple", "banana"]
+
+# append() - add to end
+fruits.append("cherry")
+# ["apple", "banana", "cherry"]
+
+# insert() - add at position
+fruits.insert(1, "blueberry")
+# ["apple", "blueberry", "banana", "cherry"]
+
+# extend() - add multiple
+fruits.extend(["date", "elderberry"])</code></pre>
+            </section>
+
+            <!-- Slide 40: Removing Elements from Lists -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Lists</span>
+                <h2>Removing Elements from Lists</h2>
+                <pre><code class="language-python">fruits = ["apple", "banana", "cherry", "date"]
+
+# remove() - by value
+fruits.remove("banana")
+
+# pop() - by index (default last)
+last = fruits.pop()        # removes "date"
+first = fruits.pop(0)      # removes "apple"
+
+# del - delete by index
+del fruits[0]
+
+# clear() - remove all
+fruits.clear()</code></pre>
+            </section>
+
+            <!-- Slide 41: List Methods -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Lists</span>
+                <h2>List Methods</h2>
+                <div class="two-col" style出入于 20px;">
+                    <div>
+                        <h4>Common Methods</h4>
+                        <ul>
+                            <li><code>sort()</code> - Sort in place</li>
+                            <li><code>reverse()</code> - Reverse in place</li>
+                            <li><code>index()</code> - Find index</li>
+                            <li><code>count()</code> - Count occurrences</li>
+                            <li><code>copy()</code> - Copy list</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Examples</h4>
+                        <pre><code class="language-python">nums = [3, 1, 4, 1, 5]
+nums.sort()           # [1, 1, 3, 4, 5]
+nums.reverse()        # [5, 4, 3, 1, 1]
+print(nums.index(4))  # 1
+print(nums.count(1))  # 2</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 42: Tuples -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Collections</span>
+                <h2>Tuples</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Ordered, immutable collection of items.</p>
+                </div>
+                <pre><code class="language-python"># Creating tuples
+coordinates = (10, 20)
+person = ("Alice", 25, "Engineer")
+
+# Single element tuple (note comma)
+single = (5,)
+
+# Accessing elements
+print(coordinates[0])   # 10
+print(person[1])        # 25
+
+# Tuples are immutable
+# coordinates[0] = 30  # Error!</code></pre>
+            </section>
+
+            <!-- Slide 43: Tuple Operations -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Tuples</span>
+                <h2>Tuple Operations</h2>
+                <pre><code class="language-python"># Concatenation
+t1 = (1, 2)
+t2 = (3, 4)
+t3 = t1 + t2        # (1, 2, 3, 4)
+
+# Repetition
+print(t1 * 2)       # (1, 2, 1, 2)
+
+# Membership
+print(2 in t1)      # True
+
+# Unpacking
+x, y = (10, 20)
+print(x)            # 10
+print(y)            # 20</code></pre>
+            </section>
+
+            <!-- Slide 44: Sets -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Collections</span>
+                <h2>Sets</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Unordered collection of unique items.</p>
+                </div>
+                <pre><code class="language-python"># Creating sets
+fruits = {"apple", "banana", "cherry"}
+numbers = {1, 2, 3, 3, 3}  # {1, 2, 3}
+
+# Empty set
+empty = set()  # Not {} (that's dict)
+
+# Adding elements
+fruits.add("date")
+
+# Removing elements
+fruits.remove("banana")
+fruits.discard("elderberry")  # No error if missing</code></pre>
+            </section>
+
+            <!-- Slide 45: Set Operations -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Sets</span>
+                <h2>Set Operations</h2>
+                <pre><code class="language-python">A = {1, 2, 3, 4}
+B = {3, 4, 5, 6}
+
+# Union
+print(A | B)        # {1, 2, 3, 4, 5, 6}
+
+# Intersection
+print(A & B)        # {3, 4}
+
+# Difference
+print(A - B)        # {1, 2}
+
+# Symmetric Difference
+print(A ^ B)        # {1, 2, 5, 6}</code></pre>
+            </section>
+
+            <!-- Slide 46: Dictionaries -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Collections</span>
+                <h2>Dictionaries</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Key-value pairs for storing data.</p>
+                </div>
+                <pre><code class="language-python"># Creating dictionaries
+person = {
+    "name": "Alice",
+    "age": 25,
+    "city": "New York"
+}
+
+# Accessing values
+print(person["name"])       # "Alice"
+printEGLISEprint(person.get("age"))        # 25
+print(person.get("salary", 0))  # 0 (default)</code></pre>
+            </section>
+
+            <!-- Slide 47: Dictionary Methods -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Dictionaries</span>
+                <h2>Dictionary Methods</h2>
+                <pre><code class="language-python">person = {"name": "Alice", "age": 25}
+
+# keys(), values(), items()
+print(person.keys())    # dict_keys(['name', 'age'])
+print(person.values())  # dict_values(['Alice', 25])
+print(person.items())   # dict_items([('name', 'Alice'), ...])
+
+# update()
+person.update({"city": "NYC"})
+
+# pop()
+name = person.pop("name")</code></pre>
+            </section>
+
+            <!-- Slide 48: Collection Iteration -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Collections</span>
+                <h2>Iterating Over Collections</h2>
+                <pre><code class="language-python"># List iteration
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+
+# Dictionary iteration
+person = {"name": "Alice", "age": 25}
+for key, value in person.items():
+    print(f"{key}: {value}")
+
+# Set iteration
+for item in {1, 2, 3}:
+    print(item)</code></pre>
+            </section>
+
+            <!-- Slide 49: Membership Testing -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Collections</span>
+                <h2>Membership Testing</h2>
+                <pre><code class="language-python"># in operator
+fruits = ["apple", "banana"]
+print("apple" in fruits)    # True
+print("grape" in fruits)    # False
+
+# Dictionary keys
+person = {"name": "Alice"}
+print("name" in person)     # True
+print("Alice" in person)    # False (checks keys)
+
+# Set membership
+print(3 in {1, 2, 3})       # True</code></pre>
+            </section>
+
+            <!-- Slide 50: Module 3 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 3 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Strings are immutable sequences of characters</li>
+                        <li>Lists are mutable, ordered collections</li>
+                        <li>Tuples are immutable, ordered collections</li>
+                        <li>Sets are unordered, unique collections</li>
+                        <li>Dictionaries store key-value pairs</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 4: Control Flow -->
+            <!-- Slide 51: Module 4 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 4</span>
+                <h2>Control Flow</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Master conditional statements</li>
+                        <li>Understand loops</li>
+                        <li>Learn loop control statements</li>
+                        <li>Work with the range function</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 52: If Statement -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Control Flow</span>
+                <h2>If Statement</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Executes code only if a condition is True.</p>
+                </div>
+                <pre><code class="language-python">age = 18
+
+if age >= 18:
+    print("You are an adult.")
+
+# With else
+if age >= 18:
+    print("Adult")
+else:
+    print("Minor")</code></pre>
+            </section>
+
+            <!-- Slide 53: Elif Statement -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Control Flow</span>
+                <h2>Elif Statement</h2>
+                <pre><code class="language-python">score = 85
+
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+elif score >= 70:
+    grade = "C"
+elif score >= 60:
+    grade = "D"
+else:
+    grade = "F"
+
+print(f"Grade: {grade}")</code></pre>
+            </section>
+
+            <!-- Slide 54: Nested Conditions -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Control Flow</span>
+                <h2>Nested Conditions</h2>
+                <pre><code class="language-python">age = 20
+has_id = True
+
+if age >= 18:
+    if has_id:
+        print("Entry allowed.")
+    else:
+        print("ID required.")
+else:
+    print("Too young.")</code></pre>
+            </section>
+
+            <!-- Slide 55: Match Case -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Control Flow</span>
+                <h2>Match Case (Python 3.10+)</h2>
+                <pre><code class="language-python">day = "Monday"
+
+match day:
+    case "Monday":
+        print("Start of week")
+    case "Friday":
+        print("End of week")
+    case "Saturday" | "Sunday":
+        print("Weekend")
+    case _:
+        print("Midweek")</code></pre>
+            </section>
+
+            <!-- Slide 56: For Loop -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Loops</span>
+                <h2>For Loop</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Iterates over a sequence of items.</p>
+                </div>
+                <pre><code class="language-python"># Iterate over list
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+
+# Iterate over string
+for char in "Hello":
+    print(char)</code></pre>
+            </section>
+
+            <!-- Slide 57: While Loop -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Loops</span>
+                <h2>While Loop</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Repeats while a condition is True.</p>
+                </div>
+                <pre><code class="language-python"># Countdown
+count = 5
+while count > 0:
+    print(count)
+    count -= 1
+print("Blast off!")
+
+# User input validation
+password = ""
+while password != "secret":
+    password = input("Enter password: ")
+print("Access granted!")</code></pre>
+            </section>
+
+            <!-- Slide 58: Nested Loops -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Loops</span>
+                <h2>Nested Loops</h2>
+                <pre><code class="language-python"># Multiplication table
+for i in range(1, 4):
+    for j in range(1, 4):
+        print(f"{i} x {j} = {i*j}")
+    print()  # Empty line
+
+# Output:
+# 1 x 1 = 1
+# 1 x 2 = 2
+# 1 x 3 = 3
+# ...</code></pre>
+            </section>
+
+            <!-- Slide 59: Break Statement -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Control</span>
+                <h2>Break Statement</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Exits the loop immediately.</p>
+                </div>
+                <pre><code class="language-python"># Find first even number
+numbers = [1, 3, 5, 8, 9, 10]
+for num in numbers:
+    if num % 2 == 0:
+        print(f"Found: {num}")
+        break
+
+# Search in list
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    if fruit == "banana":
+        print("Found banana!")
+        break</code></pre>
+            </section>
+
+            <!-- Slide 60: Continue Statement -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Control</span>
+                <h2>Continue Statement</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Skips the current iteration and continues with the next.</p>
+                </div>
+                <pre><code class="language-python"># Skip even numbers
+for num in range(10):
+    if num % 2 == 0:
+        continue
+    print(num)  # Prints odd numbers only
+
+# Skip empty strings
+names = ["Alice", "", "Bob", "", "Charlie"]
+for name in names:
+    if name == "":
+        continue
+    print(f"Hello, {name}!")</code></pre>
+            </section>
+
+            <!-- Slide 61: Pass Statement -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Control</span>
+                <h2>Pass Statement</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Does nothing, used as a placeholder.</p>
+                </div>
+                <pre><code class="language-python"># Placeholder for future code
+for i in range(10):
+    pass  # TODO: implement later
+
+# Empty class definition
+class MyClass:
+    pass
+
+# Empty function
+def my_function():
+    pass</code></pre>
+            </section>
+
+            <!-- Slide 62: Range Function -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Function</span>
+                <h2>Range Function</h2>
+                <pre><code class="language-python"># range(stop)
+for i in range(5):
+    print(i)  # 0, 1, 2, 3, 4
+
+# range(start, stop)
+for i in range(2, 6):
+    print(i)  # 2, 3, 4, 5
+
+# range(start, stop, step)
+for i in range(0, 10, 2):
+    print(i)  # 0, 2, 4, 6, 8
+
+# Convert to list
+numbers = list(range(5))  # [0, 1, 2, 3, 4]</code></pre>
+            </section>
+
+            <!-- Slide 63: Module 4 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 4 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>If statements control program flow</li>
+                        <li>For loops iterate over sequences</li>
+                        <li>While loops repeat while condition is True</li>
+                        <li>Break exits, continue skips, pass does nothing</li>
+                        <li>Range generates number sequences</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 5: Functions -->
+            <!-- Slide 64: Module 5 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 5</span>
+                <h2>Functions</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand function definition and calling</li>
+                        <li>Work with parameters and arguments</li>
+                        <li>Learn about return values</li>
+                        <li>Understand variable scope</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 65: Creating Functions -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Functions</span>
+                <h2>Creating Functions</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> A function is a reusable block of code that performs a specific task.</p>
+                </div>
+                <pre><code class="language-python"># Function definition
+def greet():
+    print("Hello, World!")
+
+# Function call
+greet()  # Output: Hello, World!
+
+# Function with parameters
+def greet_user(name):
+    print(f"Hello, {name}!")
+
+greet_user("Alice")  # Output: Hello, Alice!</code></pre>
+            </section>
+
+            <!-- Slide 66: Parameters and Arguments -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Functions</span>
+                <h2>Parameters and Arguments</h2>
+                <pre><code class="language-python"># Positional arguments
+def add(a, b):
+    return a + b
+
+result = add(5, 3)  # a=5, b=3
+
+# Default parameters
+def greet(name, greeting="Hello"):
+    print(f"{greeting}, {name}!")
+
+greet("Alice")           # Hello, Alice!
+greet("Bob", "Hi")       # Hi, Bob!
+
+# Keyword arguments
+def person_info(name, age, city):
+    print(f"{name}, {age}, {city}")
+
+person_info(age=25, city="NYC", name="Alice")</code></pre>
+            </section>
+
+            <!-- Slide 67: Return Values -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Functions</span>
+                <h2>Return Values</h2>
+                <pre><code class="language-python"># Single return value
+def square(x):
+    return x ** 2
+
+result = square(4)  # 16
+
+# Multiple return values
+def get_min_max(numbers):
+    return min(numbers), max(numbers)
+
+minimum, maximum = get_min_max([3, 1, 4, 1, 5])
+print(minimum)  # 1
+print(maximum)  # 5
+
+# No return (returns None)
+def say_hello():
+    print("Hello")
+
+result = say_hello()  # result is None</code></pre>
+            </section>
+
+            <!-- Slide 68: Variable Scope -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Functions</span>
+                <h2>Variable Scope</h2>
+                <pre><code class="language-python"># Global variable
+name = "Alice"
+
+def show_name():
+    # Local variable
+    local_name = "Bob"
+    print(name)        # Access global
+    print(local_name)  # Access local
+
+show_name()
+# print(local_name)  # Error! Not accessible
+
+# Modify global
+counter = 0
+def increment():
+    global counter
+    counter += 1</code></pre>
+            </section>
+
+            <!-- Slide 69: Lambda Functions -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Functions</span>
+                <h2>Lambda Functions</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Small anonymous functions defined with lambda keyword.</p>
+                </div>
+                <pre><code class="language-python"># Basic lambda
+square = lambda x: x ** 2
+print(square(5))  # 25
+
+# Multiple arguments
+add = lambda x, y: x + y
+print(add(3, 4))  # 7
+
+# With map()
+numbers = [1, 2, 3, 4]
+squared = list(map(lambda x: x**2, numbers))
+print(squared)  # [1, 4, 9, 16]</code></pre>
+            </section>
+
+            <!-- Slide 70: Built-in Functions -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Functions</span>
+                <h2>Built-in Functions</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Common Functions</h4>
+                        <ul>
+                            <li><code>print()</code> - Output</li>
+                            <li><code>len()</code> - Length</li>
+                            <li><code>type()</code> - Type</li>
+                            <li><code>int(), str(), float()</code></li>
+                            <li><code>input()</code> - User input</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Math Functions</h4>
+                        <ul>
+                            <li><code>sum()</code> - Sum</li>
+                            <li><code>min(), max()</code></li>
+                            <li><code>abs()</code> - Absolute</li>
+                            <li><code>round()</code> - Round</li>
+                            <li><code>pow()</code> - Power</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 71: Module 5 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 5 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Functions are reusable code blocks</li>
+                        <li>Parameters receive arguments</li>
+                        <li>Return values pass data back</li>
+                        <li>Variables have local and global scope</li>
+                        <li>Lambda functions are anonymous</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 6: Modules and Packages -->
+            <!-- Slide 72: Module 6 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 6</span>
+                <h2>Modules and Packages</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand modules and packages</li>
+                        <li>Learn to import modules</li>
+                        <li>Explore built-in modules</li>
+                        <li>Work with popular modules</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 73: Creating Modules -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Modules</span>
+                <h2>Creating Modules</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> A module is a Python file containing functions, classes, and variables.</p>
+                </div>
+                <pre><code class="language-python"># mymodule.py
+def greet(name):
+    return f"Hello, {name}!"
+
+PI = 3.14159
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius</code></pre>
+            </section>
+
+            <!-- Slide 74: Importing Modules -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Modules</span>
+                <h2>Importing Modules</h2>
+                <pre><code class="language-python"># Import entire module
+import math
+print(math.pi)
+
+# Import specific items
+from math import pi, sqrt
+print(pi)
+print(sqrt(16))
+
+# Import with alias
+import numpy as np
+import pandas as pd
+
+# Import all (not recommended)
+from math import *</code></pre>
+            </section>
+
+            <!-- Slide 75: Math Module -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module</span>
+                <h2>Math Module</h2>
+                <pre><code class="language-python">import math
+
+# Constants
+print(math.pi)       # 3.14159...
+print(math.e)        # 2.71828...
+
+# Functions
+print(math.sqrt(16))     # 4.0
+print(math.pow(2, 3))    # 8.0
+print(math.ceil(4.2))    # 5
+print(math.floor(4.8))   # 4
+print(math.factorial(5)) # 120</code></pre>
+            </section>
+
+            <!-- Slide 76: Random Module -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module</span>
+                <h2>Random Module</h2>
+                <pre><code class="language-python">import random
+
+# Random float between 0 and 1
+print(random.random())
+
+# Random integer
+print(random.randint(1, 10))  # 1 to 10
+
+# Random choice
+fruits = ["apple", "banana", "cherry"]
+print(random.choice(fruits))
+
+# Shuffle list
+random.shuffle(fruits)
+
+# Random sample
+print(random.sample(range(100), 5))</code></pre>
+            </section>
+
+            <!-- Slide 77: Datetime Module -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module</span>
+                <h2>Datetime Module</h2>
+                <pre><code class="language-python">from datetime import datetime, timedelta
+
+# Current date and time
+now = datetime.now()
+print(now)
+
+# Format date
+print(now.strftime("%Y-%m-%d %H:%M:%S"))
+
+# Parse date
+date = datetime.strptime("2024-01-15", "%Y-%m-%d")
+
+# Add time
+future = now + timedelta(days=7)
+print(future)</code></pre>
+            </section>
+
+            <!-- Slide 78: Module 6 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 6 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Modules are Python files with reusable code</li>
+                        <li>Use import to access module contents</li>
+                        <li>Math module for mathematical operations</li>
+                        <li>Random module for randomness</li>
+                        <li>Datetime module for date and time</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 7: Exception Handling -->
+            <!-- Slide 79: Module 7 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 7</span>
+                <h2>Exception Handling</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand types of errors</li>
+                        <li>Learn try-except blocks</li>
+                        <li>Work with else and finally</li>
+                        <li>Handle exceptions gracefully</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 80: Types of Errors -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Errors</span>
+                <h2>Types of Errors</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Syntax Errors</h4>
+                        <pre><code class="language-python"># Missing colon
+if x > 5
+    print("x is large")
+
+# Unmatched parentheses
+print("Hello"</code></pre>
+                    </div>
+                    <div>
+                        <h4>Runtime Errors</h4>
+                        <pre><code class="language-python"># ZeroDivisionError
+print(10 / 0)
+
+# ValueError
+int("hello")
+
+# IndexError
+my_list = [1, 2, 3]
+print(my_list[5])</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 81: Try Except -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Exception</span>
+                <h2>Try and Except</h2>
+                <pre><code class="language-python">try:
+    number = int(input("Enter a number: "))
+    result = 100 / number
+    print(f"Result: {result}")
+except ValueError:
+    print("Please enter a valid number.")
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+except Exception as e:
+    print(f"An error occurred: {e}")</code></pre>
+            </section>
+
+            <!-- Slide 82: Else and Finally -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Exception</span>
+                <h2>Else and Finally</h2>
+                <pre><code class="language-python">try:
+    file = open("data.txt", "r")
+    content = file.read()
+except FileNotFoundError:
+    print("File not found.")
+else:
+    # Runs if no exception
+    print("File read successfully.")
+    print(content)
+finally:
+    # Always runs
+    print("Cleanup complete.")
+    file.close()</code></pre>
+            </section>
+
+            <!-- Slide 83: Module 7 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 7 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Syntax errors prevent code from running</li>
+                        <li>Runtime errors occur during execution</li>
+                        <li>Try-except handles exceptions</li>
+                        <li>Else runs if no exception</li>
+                        <li>Finally always runs</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 8: File Handling -->
+            <!-- Slide 84: Module 8 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 8</span>
+                <h2>File Handling</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Open and close files</li>
+                        <li>Read file contents</li>
+                        <li>Write to files</li>
+                        <li>Use context managers</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 85: Opening Files -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Files</span>
+                <h2>Opening Files</h2>
+                <pre><code class="language-python"># Open file for reading
+file = open("data.txt", "r")
+
+# Modes
+# "r" - Read (default)
+# "w" - Write (overwrite)
+# "a" - Append
+# "x" - Create
+# "b" - Binary mode
+
+# Always close files
+file.close()
+
+# Better: use context manager
+with open("data.txt", "r") as file:
+    content = file.read()</code></pre>
+            </section>
+
+            <!-- Slide 86: Reading Files -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Files</span>
+                <h2>Reading Files</h2>
+                <pre><code class="language-python">with open("data.txt", "r") as file:
+    # Read entire file
+    content = file.read()
+    
+    # Read line by line
+    for line in file:
+        print(line.strip())
+    
+    # Read all lines into list
+    lines = file.readlines()
+    
+    # Read single line
+    first_line = file.readline()</code></pre>
+            </section>
+
+            <!-- Slide 87: Writing Files -->
+            <section class="slide-concept">
+                <span classules class="badge badge-concept">Files</span>
+                <h2>Writing Files</h2>
+                <pre><code class="language-python"># Write (overwrites existing)
+with open("output.txt", "w") as file:
+    file.write("Hello, World!\n")
+    file.write("Second line\n")
+
+# Append (adds to end)
+with open("output.txt", "a") as file:
+    file.write("Appended line\n")
+
+# Write multiple lines
+lines = ["Line 1\n", "Line 2\n"]
+with open("output.txt", "w") as file:
+    file.writelines(lines)</code></pre>
+            </section>
+
+            <!-- Slide 88: Context Manager -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Files</span>
+                <h2>Context Manager (with)</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Automatically handles file closing, even if errors occur.</p>
+                </div>
+                <pre><code class="language-python"># Without context manager
+file = open("data.txt", "r")
+try:
+    content = file.read()
+finally:
+    file.close()
+
+# With context manager (preferred)
+with open("data.txt", "r") as file:
+    content = file.read()
+# File automatically closed</code></pre>
+            </section>
+
+            <!-- Slide 89: Module 8 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 8 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Use open() to open files</li>
+                        <li>Always close files after use</li>
+                        <li>Use context managers for safety</li>
+                        <li>Read with read(), write with write()</li>
+                        <li>Append mode adds to existing files</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 9: Introduction to OOP -->
+            <!-- Slide 90: Module 9 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 9</span>
+                <h2>Introduction to OOP</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand classes and objects</li>
+                        <li>Learn about attributes and methods</li>
+                        <li>Work with constructors</li>
+                        <li>Create simple classes</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 91: Classes and Objects -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">OOP</span>
+                <h2>Classes and Objects</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Class:</strong> Blueprint for creating objects.<br>
+                    <strong>Object:</strong> Instance of a class.</p>
+                </div>
+                <pre><code class="language-python"># Define a class
+class Dog:
+    pass
+
+# Create objects
+my_dog = Dog()
+your_dog = Dog()
+
+print(type(my_dog))  # <class '__main__.Dog'></code></pre>
+            </section>
+
+            <!-- Slide 92: Attributes and Methods -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">OOP</span>
+                <h2>Attributes and Methods</h2>
+                <pre><code class="language-python">class Dog:
+    # Class attribute
+    species = "Canis familiaris"
+    
+    def __init__(self, name, age):
+        # Instance attributes
+        self.name = name
+        self.age = age
+    
+    def bark(self):
+        return f"{self.name} says woof!"
+
+# Create object
+my_dog = Dog("Buddy", 3)
+print(my_dog.name)   # Buddy
+print(my_dog.bark()) # Buddy says woof!</code></pre>
+            </section>
+
+            <!-- Slide 93: Constructors -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">OOP</span>
+                <h2>Constructors (__init__)</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Special method called when creating an object.</p>
+                </div>
+                <pre><code class="language-python">class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self.email = f"{name.lower()}@example.com"
+
+# Create person
+person = Person("Alice", 25)
+print(person.name)   # Alice
+print(person.email)  # alice@example.com</code></pre>
+            </section>
+
+            <!-- Slide 94: Module 9 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 9 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Classes are blueprints for objects</li>
+                        <li>Objects are instances of classes</li>
+                        <li>Attributes store data</li>
+                        <li>Methods define behavior</li>
+                        <li>Constructors initialize objects</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- PART 1 PROJECTS -->
+            <!-- Slide 95: Calculator Project -->
+            <section class="slide-example">
+                <span class="badge badge-example">Project</span>
+                <h2>Project: Calculator</h2>
+                <div class="box box-green" style="margin-top: 20px;">
+                    <h4>Problem Statement</h4>
+                    <p>Create a calculator that performs basic arithmetic operations.</p>
+                </div>
+                <pre><code class="language-python">def calculator():
+    print("Simple Calculator")
+    a = float(input("Enter first number: "))
+    b = float(input("Enter second number: "))
+    op = input("Enter operation (+, -, *, /): ")
+    
+    if op == "+":
+        print(f"Result: {a + b}")
+    elif op == "-":
+        print(f"Result: {a - b}")
+    elif op == "*":
+        print(f"Result: {a * b}")
+    elif op == "/":
+        if b != 0:
+            print(f"Result: {a / b}")
+        else:
+            print("Cannot divide by zero!")
+    else:
+        print("Invalid operation.")</code></pre>
+            </section>
+
+            <!-- Slide 96: Number Guessing Game -->
+            <section class="slide-example">
+                <span class="badge badge-example">Project</span>
+                <h2>Project: Number Guessing Game</h2>
+                <pre><code class="language-python">import random
+
+def guessing_game():
+    number = random.randint(1, 100)
+    attempts = 0
+    
+    print("Guess the number (1-100)")
+    while True:
+        guess = int(input("Your guess: "))
+        attempts += 1
+        
+        if guess < number:
+            print("Too low!")
+        elif guess > number:
+            print("Too high!")
+        else:
+            print(f"Correct! Attempts: {attempts}")
+            break</code></pre>
+            </section>
+
+            <!-- Slide 97: Password Generator -->
+            <section class="slide-example">
+                <span class="badge badge-example">Project</span>
+                <h2>Project: Password Generator</h2>
+                <pre><code class="language-python">import random
+import string
+
+def generate_password(length=12):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
+
+# Generate password
+new_password = generate_password(16)
+print(f"Generated password: {new_password}")</code></pre>
+            </section>
+
+            <!-- Slide 98: To-Do List -->
+            <section class="slide-example">
+                <span class="badge badge-example">Project</span>
+                <h2>Project: To-Do List</h2>
+                <pre><code class="language-python">class TodoList:
+    def __init__(self):
+        self.tasks = []
+    
+    def add_task(self, task):
+        self.tasks.append(task)
+    
+    def remove_task(self, index):
+        if 0 <= index < len(self.tasks):
+            return self.tasks.pop(index)
+    
+    def show_tasks(self):
+        for i, task in enumerate(self.tasks):
+            print(f"{i}: {task}")
+
+# Usage
+todo = TodoList()
+todo.add_task("Learn Python")
+todo.show_tasks()</code></pre>
+            </section>
+
+            <!-- Slide 99: Student Management System -->
+            <section class="slide-example">
+                <span class="badge badge-example">Project</span>
+                <h2>Project: Student Management</h2>
+                <pre><code class="language-python">class Student:
+    def __init__(self, name, age, grade):
+        self.name = name
+        self.age = age
+        self.grade = grade
+    
+    def display_info(self):
+        return f"{self.name}: {self.grade}"
+
+class School:
+    def __init__(self):
+        self.students = []
+    
+    def add_student(self, student):
+        self.students.append(student)</code></pre>
+            </section>
+
+            <!-- PART 2: ADVANCED PYTHON -->
+            <!-- Slide 100: Part 2 Introduction -->
+            <section class="slide-title">
+                <h1>Part 2: Advanced Python</h1>
+                <p style="font-size: 1.2em; margin-top: 30px;">Data Analysis and Real-World Applications</p>
+            </section>
+
+            <!-- MODULE 10: Advanced Functions -->
+            <!-- Slide 101: Module 10 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 10</span>
+                <h2>Advanced Functions and Concepts</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand recursion</li>
+                        <li>Master comprehensions</li>
+                        <li>Work with iterators and generators</li>
+                        <li>Learn *args and **kwargs</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 102: Recursion -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced</span>
+                <h2>Recursion</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> A function that calls itself to solve a problem.</p>
+                </div>
+                <pre><code class="language-python"># Factorial
+def factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print(f factorial(5))  # 120
+
+# Fibonacci
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+print(fibonacci(7))  # 13</code></pre>
+            </section>
+
+            <!-- Slide 103: List Comprehensions -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced</span>
+                <h2>List Comprehensions</h2>
+                <pre><code class="language-python"># Basic comprehension
+squares = [x**2 for x in range(10)]
+# [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+# With condition
+evens = [x for x in range(10) if x % 2 == 0]
+# [0, 2, 4, 6, 8]
+
+# Nested comprehension
+matrix = [[i*j for j in range(3)] for i in range(3)]
+# [[0, 0, 0], [0, 1, 2], [0, 2, 4]]</code></pre>
+            </section>
+
+            <!-- Slide 104: Dictionary Comprehensions -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced</span>
+                <h2>Dictionary Comprehensions</h2>
+                <pre><code class="language-python"># Basic comprehension
+squares = {x: x**2 for x in range(5)}
+# {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+
+# From two lists
+names = ["Alice", "Bob", "Charlie"]
+ages = [25, 30, 35]
+person_dict = {name: age for name, age in zip(names, ages)}
+# {'Alice': 25, 'Bob': 30, 'Charlie': 35}</code></pre>
+            </section>
+
+            <!-- Slide 105: Iterators -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced</span>
+                <h2>Iterators</h2>
+                <pre><code class="language-python"># Using iter() and next()
+my_list = [1, 2, 3]
+iterator = iter(my_list)
+
+print(next(iterator))  # 1
+print(next(iterator))  # 2
+print(next(iterator))  # 3
+# next(iterator) raises StopIteration
+
+# Custom iterator
+class CountDown:
+    def __init__(self, start):
+        self.start = start
+    
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.start <= 0:
+            raise StopIteration
+        self.start -= 1
+        return self.start + 1</code></pre>
+            </section>
+
+            <!-- Slide 106: Generators -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced</span>
+                <h2>Generators</h2>
+                <pre><code class="language-python"># Generator function
+def count_up_to(n):
+    count = 1
+    while count <= n:
+        yield count
+        count += 1
+
+# Usage
+for num in count_up_to(5):
+    print(num)  # 1, 2, 3, 4, 5
+
+# Generator expression
+squares = (x**2 for x in range(1000000))
+# Memory efficient!</code></pre>
+            </section>
+
+            <!-- Slide 107: Enumerate and Zip -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced unto 20px;">
+                    <h4>Enumerate</h4>
+                    <pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
+for index, fruit in enumerate(fruits):
+    print(f"{index}: {fruit}")
+# 0: apple
+# 1: banana
+# 2: cherry</code></pre>
+                </div>
+                <div>
+                    <h4>Zip</h4>
+                    <pre><code class="language-python">names = ["Alice", "Bob"]
+ages = [25, 30]
+for name, age in zip(names, ages):
+    print(f"{name} is {age}")
+# Alice is 25
+# Bob is 30</code></pre>
+                </div>
+            </section>
+
+            <!-- Slide 108: Args and Kwargs -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced</span>
+                <h2>*args and **kwargs</h2>
+                <pre><code class="language-python"># *args - variable positional arguments
+def sum_all(*args):
+    return sum(args)
+
+print(sum_all(1, 2, 3, 4))  # 10
+
+# **kwargs - variable keyword arguments
+def print_info(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{lez</li>
+                        <li>Generators are memory efficient</li>
+                        <li>Enumerate adds index to iteration</li>
+                        <li>Zip combines multiple iterables</li>
+                        <li>*args and **kwargs for flexible functions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 11: Advanced Modules -->
+            <!-- Slide 110: Module 11 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 11</span>
+                <h2>Advanced Modules and Development Tools</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand packages</li>
+                        <li>Learn about PIP</li>
+                        <li>Work with virtual environments</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 111: Packages -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced</span>
+                <h2>Packages</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> A package is a directory of Python modules.</p>
+                </div>
+                <pre><code class="language-python"># Package structure
+# mypackage/
+#     __init__.py
+#     module1.py
+#     module2.py
+
+# Import from package
+from mypackage import module1
+from mypackage.module1 import my_function</code></pre>
+            </section>
+
+            <!-- Slide 112: PIP -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced</span>
+                <h2>PIP Package Manager</h2>
+                <pre><code class="language-python"># Install package
+# pip install package_name
+
+# Install specific version
+# pip install package_name==1.2.3
+
+# Upgrade package
+# pip install --upgrade package_name
+
+# List installed packages
+# pip list
+
+# Uninstall package
+# pip uninstall package_name</code></pre>
+            </section>
+
+            <!-- Slide 113: Virtual Environments -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced</span>
+                <h2>Virtual Environments</h2>
+                <pre><code class="language-python"># Create virtual environment
+# python -m venv myenv
+
+# Activate (Windows)
+# myenv\Scripts\activate
+
+# Activate (Mac/Linux)
+# source myenv/bin/activate
+
+# Deactivate
+# deactivate</code></pre>
+            </section>
+
+            <!-- Slide 114: Module 11 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 11 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Packages organize related modules</li>
+                        <li>PIP installs and manages packages</li>
+                        <li>Virtual environments isolate dependencies</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 12: Advanced Exception Handling -->
+            <!-- Slide 115: Module 12 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 12</span>
+                <h2>Advanced Exception Handling</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand raise statement</li>
+                        <li>Create custom exceptions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 116: Raise Statement -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced</span>
+                <h2>Raise Statement</h2>
+                <pre><code class="language-python"># Raise built-in exception
+def divide(a1, a2):
+    if a2 == 0:
+        raise ZeroDivisionError("Cannot divide by zero")
+    return a1 / a2
+
+# Raise with message
+if not isinstance(age, int):
+    raise TypeError("Age must be an integer")
+
+# Re-raise exception
+try:
+    risky_operation()
+except Exception:
+    # Do something
+    raise  # Re-raise the same exception</code></pre>
+            </section>
+
+            <!-- Slide 117: Custom Exceptions -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Advanced</span>
+                <h2>Custom Exceptions</h2>
+                <pre><code class="language-python">class ValidationError(Exception):
+    def __init__(self, field, message):
+        self.field = field
+        self.message = message
+        super().__init__(f"{field}: {message}")
+
+# Usage
+def validate_age(age):
+    if age < 0:
+        raise ValidationError("age", "Must be non-negative")
+    if age > 150:
+        raise ValidationError("age", "Must be realistic")
+    return age</code></pre>
+            </section>
+
+            <!-- Slide 118: Module 12 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 12 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Raise exceptions with raise</li>
+                        <li>Custom exceptions inherit from Exception</li>
+                        <li>Re-raise exceptions with bare raise</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 13: Advanced File Handling -->
+            <!-- Slide 119: Module 13 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 13</span>
+                <h2>Advanced File Handling</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Work with CSV files</li>
+                        <li>Handle JSON data</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 120: CSV Files -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Files</span>
+                <h2>CSV Files</h2>
+                <pre><code class="language-python">import csv
+
+# Reading CSV
+with open('data.csv', 'r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+
+# Writing CSV
+with open('output.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Name', 'Age'])
+    writer.writerow(['Alice', '25'])
+
+# DictReader
+with open('data.csv', 'r') as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        print(row['Name'])</code></pre>
+            </section>
+
+            <!-- Slide 121: JSON Files -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Files</span>
+                <h2>JSON Files</h2>
+                <pre><code class="language-python">import json
+
+# Writing JSON
+data = {
+    "name": "Alice",
+    "age": 25,
+    "city": "New York"
+}
+
+with open('data.json', 'w') as file:
+    json.dump(data, file, indent=4)
+
+# Reading JSON
+with open('data.json', 'r') as file:
+    loaded_data = json.load(file)
+    print(loaded_data['name'])</code></pre>
+            </section>
+
+            <!-- Slide 122: Module 13 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 13 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>CSV files use csv module</li>
+                        <li>JSON files use json module</li>
+                        <li>DictReader for dictionary format</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 14: Advanced OOP -->
+            <!-- Slide 123: Module 14 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 14</span>
+                <h2>Advanced OOP</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand OOP concepts</li>
+                        <li>Learn advanced OOP features</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 124: Encapsulation -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">OOP</span>
+                <h2>Encapsulation lifecycle</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <p><strong>Definition:</strong> Bundling data and methods that work on that data.</p>
+                </div>
+                <pre><code class="language-python">class BankAccount:
+    def __init__(self):
+        self._balance = 0  # Protected
+        self.__pin = 1234  # Private
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self._balance += amount
+    
+    def get_balance(self):
+        return self._balance</code></pre>
+            </section>
+
+            <!-- Slide 125: Inheritance -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">OOP</span>
+                <h2>Inheritance</h2>
+                <pre><code class="language-python">class Animal:
+    def __init__(self, name):
+        self.name = name
+    
+    def speak(self):
+        pass
+
+class Dog(Animal):
+    def speak(self):
+        return f"{self.name} says woof!"
+
+class Cat(Animal):
+    def speak(self):
+        return f"{self.name} says meow!"
+
+dog = Dog("Buddy")
+print(dog.speak())  # Buddy says woof!</code></pre>
+            </section>
+
+            <!-- Slide 126: Polymorphism -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">OOP</span>
+                <h2>Polymorphism</h2>
+                <pre><code class="language-python"># Same interface, different behavior
+class Shape:
+    def area(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return  * self.radius ** 2
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    
+    def area(self):
+        return self.width * self.height</code></pre>
+            </section>
+
+            <!-- Slide 127: Abstraction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">OOP</span>
+                <h2>Abstraction</h2>
+                <pre><code class="language-python">from abc import ABC, abstractmethod
+
+class Vehicle(ABC):
+    @abstractmethod
+    def start(self):
+        pass
+    
+    @abstractmethod
+    def stop(self):
+        pass
+
+class Car(Vehicle):
+    def start(self):
+        print("Car starting...")
+    
+    def stop(self):
+        print("Car stopping...")</code></pre>
+            </section>
+
+            <!-- Slide 128: Class and Static Methods -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">OOP</span>
+                <h2>Class and Static Methods</h2>
+                <pre><code class="language-python">class Person:
+    count = 0
+    
+    def __init__(self, name):
+        self.name = name
+        Person.count += 1
+    
+    @classmethod
+    def get_count(cls):
+        return cls.count
+    
+    @staticmethod
+    def is_adult(age):
+        return age >= 18
+
+print(Person.get_count())
+print(Person.is_adult(20))</code></pre>
+            </section>
+
+            <!-- Slide 129: Module 14 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 14 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Encapsulation bundles data and methods</li>
+                        <li>Inheritance creates class hierarchies</li>
+                        <li>Polymorphism allows different implementations</li>
+                        <li>Abstraction hides implementation details</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 15: NumPy -->
+            <!-- Slide 130: Module 15 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 15</span>
+                <h2>NumPy</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand NumPy arrays</li>
+                        <li>Perform array operations</li>
+                        <li>Use mathematical functions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 131: Creating Arrays -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">NumPy</span>
+                <h2>Creating Arrays</h2>
+                <pre><code class="language-python">import numpy as np
+
+# From list
+arr = np.array([1, 2, 3, 4, 5])
+
+# Special arrays
+zeros = np.zeros((3, 3))      # 3x3 zeros
+ones = np.ones((2, 4))        # 2x4 ones
+identity = np.eye(3)          # 3x3 identity
+
+# Ranges
+arr = np.arange(0, 10, 2)     # [0, 2, 4, 6, 8]
+arr = np.linspace(0, 1, 5)    # 5 values from 0 to 1</code></pre>
+            </section>
+
+            <!-- Slide 132: Array Operations -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">NumPy</span>
+                <h2>Array Operations</h2>
+                <pre><code class="language-python">import numpy as np
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+# Element-wise operations
+print(a + b)  # [5, 7, 9]
+print(a * b)  # [4, 10, 18]
+print(a ** 2) # [1, 4, 9]
+
+# Universal functions
+print(np.sqrt(a))   # [1, 1.414, 1.732]
+print(np.exp(a))    # [2.718, 7.389, 20.086]</code></pre>
+            </section>
+
+            <!-- Slide 133: Array Indexing -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">NumPy</span>
+                <h2>Array Indexing and Slicing</h2>
+                <pre><code class="language-python">import numpy as np
+
+arr = np.array([[1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9]])
+
+# Indexing
+print(arr[0, 0])    # 1
+print(arr[1, 2])    # 6
+
+# Slicing
+print(arr[0:2, 1:3])  # [[2, 3], [5, 6]]
+print(arr[:, 0])      # [1, 4, 7]</code></pre>
+            </section>
+
+            <!-- Slide 134: Module 15 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 15 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>NumPy provides efficient arrays</li>
+                        <li>Arrays support vectorized operations</li>
+                        <li>Broadcasting simplifies operations</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 16: Pandas -->
+            <!-- Slide 135: Module 16 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 16</span>
+                <h2>Pandas</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Understand Series and DataFrames</li>
+                        <li>Read and write data</li>
+                        <li>Perform data analysis</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 136: Series -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Pandas</span>
+                <h2>Series</h2>
+                <pre><code class="language-python">import pandas as pd
+
+# Create Series
+s = pd.Series([1, 2, 3, 4, 5])
+print(s)
+
+# With custom index
+s = pd.Series([1, 2, 3], index=['a', 'b', 'c'])
+print(s['a'])  # 1
+
+# From dictionary
+s = pd.Series({'a': 1, 'b': 2, 'c': 3})</code></pre>
+            </section>
+
+            <!-- Slide 137: DataFrames -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Pandas</span>
+                <h2>DataFrames</h2>
+                <pre><code class="language-python">import pandas as pd
+
+# Create DataFrame
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'City': ['NYC', 'LA', 'Chicago']
+}
+
+df = pd.DataFrame(data)
+print(df)
+
+# Access columns
+print(df['Name'])
+print(df[['Name', 'Age']])</code></pre>
+            </section>
+
+            <!-- Slide 138: Reading CSV -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Pandas</span>
+                <h2>Reading and Writing CSV</h2>
+                <pre><code class="language-python">import pandas as pd
+
+# Read CSV
+df = pd.read_csv('data.csv')
+
+# View data
+print(df.head())      # First 5 rows
+print(df.tail())      # Last 5 rows
+print(df.info())      # Data info
+print(df.describe())  # Statistics
+
+# Write CSV
+df.to_csv('output.csv', index=False)</code></pre>
+            </section>
+
+            <!-- Slide 139: Data Cleaning -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Pandas</span>
+                <h2>Data Cleaning</h2>
+                <pre><code class="language-python"># Handle missing values
+print(df.isnull().sum())  # Count missing
+
+# Drop missing values
+df_clean = df.dropna()
+
+# Fill missing values
+df_filled = df.fillna(0)
+df_filled = df.fillna(df.mean())
+
+# Remove duplicates
+df_unique = df.drop_duplicates()</code></pre>
+            </section>
+
+            <!-- Slide 140: Data Analysis -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Pandas</span>
+                <h2>Data Analysis</h2>
+                <pre><code class="language-python"># Filtering
+df[df['Age'] > 25]
+
+# Sorting
+df.sort_values('Age', ascending=False)
+
+# Grouping
+df.groupby('City')['Age'].mean()
+
+# Aggregation
+df.agg({'Age': ['mean', 'min', 'max']})</code></pre>
+            </section>
+
+            <!-- Slide 141: Module 16 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 16 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Series is 1D, DataFrame is 2D</li>
+                        <li>Read CSV with read_csv()</li>
+                        <li>Cleanryn</li>
+                        <li>Group by for aggregation</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 17: Matplotlib -->
+            <!-- Slide 142: Module 17 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 17</span>
+                <h2>Data Visualization with Matplotlib</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li>Create various chart types</li>
+                        <li>Customize plots</li>
+                        <li>Work with subplots</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 143: Line Charts -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Matplotlib</span>
+                <h2>Line Charts</h2>
+                <pre><code class="language-python">import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [1, 4, 9, 16, 25]
+
+plt.plot(x, y, marker='o')
+plt.title('Square Numbers')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.grid(True)
+plt.show()</code></pre>
+            </section>
+
+            <!-- Slide 144: Bar Charts -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Matplotlib</span>
+                <h2>Bar Charts</h2>
+                <pre><code class="language-python">import matplotlib.pyplot as plt
+
+fruits = ['Apple', 'Banana', 'Cherry']
+quantities = [23, 17, 35]
+
+plt.bar(fruits, quantities, color=['red', 'yellow', 'pink'])
+plt.title('Fruit Quantities')
+plt.xlabel('Fruit')
+plt.ylabel('Quantity')
+plt.show()</code></pre>
+            </section>
+
+            <!-- Slide 145: Pie Charts -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Matplotlib</span>
+                <h2>Pie Charts</h2>
+                <pre><code class="language-python">import matplotlib.pyplot as plt
+
+sizes = [30, 20, 25, 25]
+labels = ['A', 'B', 'C', 'D']
+
+plt.pie(sizes, labels=labels, autopct='%1.1f%%')
+plt.title('Distribution')
+plt.show()</code></pre>
+            </section>
+
+            <!-- Slide 146: Subplots -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Matplotlib</span>
+                <h2>Subplots</h2>
+                <pre><code class="language-python">import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(2, 2)
+
+axes[0, 0].plot([1, 2, 3], [1, 4, 9])
+axes[0, 1].bar(['A', 'B'], [3, 7])
+axes[1, 0].scatter([1, 2, 3], [1, 4, 9])
+axes[1, 1].pie([30, 70], labels=['A', 'B'])
+
+plt.tight_layout()
+plt.show()</code></pre>
+            </section>
+
+            <!-- Slide 147: Module 17 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 17 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Line charts for trends</li>
+                        <li>Bar charts for comparisons</li>
+                        <li>Pie charts for proportions</li>
+                        <li>Subplots for multiple charts</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 18: Python Applications -->
+            <!-- Slide 148: Module 18 Introduction -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Module 18</span>
+                <h2>Python Applications</h2>
+                <div class="box box-blue" style="margin-top: 30px;">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        <li Working with JSON data</li>
+                        <li>Data processing scripts</li>
+                        <li>Basic automation</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 149: JSON Data -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Applications</span>
+                <h2>Working with JSON Data</h2>
+                <pre><code class="language-python">import json
+
+# Parse JSON string
+json_string = '{"name": "Alice", "age": 25}'
+data = json.loads(json_string)
+print(data['name'])  # Alice
+
+# Convert to JSON
+person = {'name': 'Bob', 'age': 30}
+json_string = json.dumps(person, indent=4)
+print(json_string)</code></pre>
+            </section>
+
+            <!-- Slide 150: Data Processing -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Applications</span>
+                <h2>Data Processing Scripts</h2>
+                <pre><code class="language-python"># Process text file
+def process_file(filename):
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+    
+    # Process each line
+    results = []
+    for line in lines:
+        processed = line.strip().upper()
+        results.append(processed)
+    
+    return results</code></pre>
+            </section>
+
+            <!-- Slide 151: Automation -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Applications</span>
+                <h2>Basic Automation</h2>
+                <pre><code class="language-python">import os
+
+# List files in directory
+for file in os.listdir('.'):
+    if file.endswith('.txt'):
+        print(file)
+
+# Rename files
+for i, file in enumerate(os.listdir('.')):
+    if file.endswith('.txt'):
+        new_name = f"file_{i}.txt"
+        os.rename(file, new_name)</code></pre>
+            </section>
+
+            <!-- Slide 152: Module 18 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 18 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>JSON is a common data format</li>
+                        <li>Python can process large datasets</li>
+                        <li>Automation saves time</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- MODULE 19: Advanced Projects -->
+            <!-- Slide 153: Expense Tracker -->
+            <section class="slide-example">
+                <span class="badge badge-example">Project</span>
+                <h2>Project: Expense Tracker</h2>
+                <pre><code class="language-python">class ExpenseTracker:
+    def __init__(self):
+        self.expenses = []
+    
+    def add_expense(self, amount, category, description):
+        self.expenses.append({
+            'amount': amount,
+            'category': category,
+            'description': description
+        })
+    
+    def get_total(self):
+        return sum(e['amount'] for e in self.expenses)
+    
+    def get_by_category(self):
+        categories = {}
+        for expense in self.expenses:
+            cat = expense['category']
+            if cat not in categories:
+                categories[cat] = 0
+            categories[cat] += expense['amount']
+        return categories</code></pre>
+            </section>
+
+            <!-- Slide 154: Library Management -->
+            <section class="slide-example">
+                <span class="badge badge-example">Project</span>
+                <h2>Project: Library Management</h2>
+                <pre><code class="language-python">class Book:
+    def __init__(self, title, author, isbn):
+        self.title = title
+        self.author = author
+        self.isbn = isbn
+        self.is_available = True
+
+class Library:
+    def __init__(self):
+        self.books = []
+    
+    def add_book(self, book):
+        self.books.append(book)
+    
+    def find_book(self, title):
+        for book in self.books:
+            if book.title == title:
+                return book
+        return None</code></pre>
+            </section>
+
+            <!-- Slide 155: Data Analysis Project -->
+            <section class="slide-example">
+                <span class="badge badge-example">Project</span>
+                <h2>Project: Data Analysis</h2>
+                <pre><code class="language-python">import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load data
+df = pd.read_csv('data.csv')
+
+# Clean data
+df = df.dropna()
+df = df.drop_duplicates()
+
+# Analyze
+summary = df.describe()
+
+# Visualize
+plt.figure(figsize=(10, 6))
+plt.hist(df['column'], bins=20)
+plt.title('Distribution')
+plt.show()</code></pre>
+            </section>
+
+            <!-- Slide 156: Dashboard Project -->
+            <section class="slide-example">
+                <span class="badge badge-example">Project</span>
+                <h2>Project: Data Visualization Dashboard</h Maintainability</h2>
+                <pre><code class="language-python">import matplotlib.pyplot as plt
+
+def create_dashboard(data):
+    fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+    
+    # Line chart
+    axes[0, 0].plot(data['x'], data['y1'])
+    axes[0, 0].set_title('Trend')
+    
+    # Bar chart
+    axes[0, 1].bar(data['categories'], data['values'])
+    axes[0, 1].set_title('Comparison')
+    
+    # Pie chart
+    axes[1, 0].pie(data['sizes'], labels=data['labels'])
+    axes[1, 0].set_title('Distribution')
+    
+    # Scatter plot
+    axes[1, 1].scatter(data['x'], data['y2'])
+    axes[1, 1].set_title('Correlation')
+    
+    plt.tight_layout()
+    return fig</code></pre>
+            </section>
+
+            <!-- Slide 157: Capstone Project -->
+            <section class="slide-example">
+                <span class="badge badge-example">Project</span>
+                <h2>Capstone Project</h2>
+                <div class="box box-green" style="margin-top: 20px;">
+                    <h4>Requirements</h4>
+                    <ul>
+                        <li>Use functions and OOP</li>
+                        <li>Handle exceptions</li>
+                        <li>Read/write files</li>
+                        <li>Use NumPy and Pandas</li>
+                        <li>Create visualizations</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- COURSE COMPLETION -->
+            <!-- Slide 158: Best Practices -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Best Practices</span>
+                <h2>Python Best Practices</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Code Style</h4>
+                        <ul>
+                            <li>Follow PEP 8</li>
+                            <li>Use meaningful names</li>
+                            <li>Keep functions small</li>
+                            <li>Write docstrings</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Code Quality</h4>
+                        <ul>
+                            <li>Write tests</li>
+                            <li>Handle exceptions</li>
+                            <li>Use virtual environments</li>
+                            <li>Document your code</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 159: Clean Code -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Best Practices</span>
+                <h2>Writing Clean Code</h2>
+                <pre><code class="language-python"># Good: Clear and readable
+def calculate_area(radius):
+    """Calculate the area of a circle."""
+    return 3.14159 * radius ** 2
+
+# Good: Meaningful names
+def get_user_by_id(user_id):
+    return database.find_user(user_id)
+
+# Good: Single responsibility
+def send_email(to, subject, body):
+    # Implementation
+    pass</code></pre>
+            </section>
+
+            <!-- Slide 160: Debugging -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Debugging</span>
+                <h2>Debugging Techniques</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Tools</h4>
+                        <ul>
+                            <li>print() statements</li>
+                            <li>Logging</li>
+                            <li>PDB debugger</li>
+                            <li>IDE debugger</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Strategies</h4>
+                        <ul>
+                            <li>Reproduce the bug</li>
+                            <li>Isolate the problem</li>
+                            <li>Check assumptions</li>
+                            <li>Use rubber duck debugging</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 161: Common Errors -->
+            <section class="slide-mistake">
+                <span class="badge badge-mistake">Common Mistakes</span>
+                <h2>Common Python Errors</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Syntax Errors</h4>
+                        <ul>
+                            <li>Missing colons</li>
+                            <li>Indentation errors</li>
+                            <li>Unmatched parentheses</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Runtime Errors</h4>
+                        <ul>
+                            <li>IndexError</li>
+                            <li>KeyError</li>
+                            <li>TypeError</li>
+                            <li>ValueError</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 162: Interview Questions -->
+            <section class="slide-interview">
+                <span class="badge badge-interview">Interview</span>
+                <h2>Python Interview Questions</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Basic</h4>
+                        <ul>
+                            <li>What is Python?</li>
+                            <li>Lists vs Tuples</li>
+                            <li>What is __init__?</li>
+                            <li>What is a decorator?</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Advanced</h4>
+                        <ul>
+                            <li>Generators vs Iterators</li>
+                            <li>GIL and multithreading</li>
+                            <li>Memory management</li>
+                            <li>Metaclasses</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 163: Career Guidance -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Career</span>
+                <h2>Career Guidance</h2>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Job Roles</h4>
+                        <ul>
+                            <li>Python Developer</li>
+                            <li>Data Analyst</li>
+                            <li>Data Scientist</li>
+                            <li>Machine Learning Engineer</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Skills to Learn</h4>
+                        <ul>
+                            <li>Web frameworks (Django/Flask)</li>
+                            <li>Cloud platforms</li>
+                            <li>Docker and Kubernetes</li>
+                            <li>CI/CD pipelines</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 164: Learning Roadmap -->
+            <section class="slide-concept">
+                <span class="badge badge-concept">Roadmap</span>
+                <h2>Learning Roadmap</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>After This Course</h4>
+                    <ul>
+                        <li>Learn a web framework (Django/Flask)</li>
+                        <li>Study databases (SQL/NoSQL)</li>
+                        <li>Explore data science libraries</li>
+                        <li>Learn version control (Git)</li>
+                        <li>Build a portfolio of projects</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 165: Certificate -->
+            <section class="slide-title">
+                <h1>Certificate of Completion</h1>
+                <p style="font-size: 1.2em; margin-top: 30px;">Congratulations!</p>
+                <p style="font-size: 0.9em; margin-top: 20px;">You have successfully completed the Complete Python Bootcamp.</p>
+                <div style="margin-top: 60px;">
+                    <p style="font-size: 0.8em;">Keep learning and building!</p>
+                </div>
+            </section>
+
+            <!-- Slide 166: Final Quiz -->
+            <section class="slide-interview">
+                <span class="badge badge-interview">Quiz</span>
+                <h2>Final Knowledge Check</h2>
+                <div class="box box-purple" style="margin-top: 20px;">
+                    <h4>Question 1</h4>
+                    <p>What is the output of: <code>print(2 ** 3)</code>?</p>
+                    <div class="quiz-option">6</div>
+                    <div class="quiz-option correct">8</div>
+                    <div class="quiz
