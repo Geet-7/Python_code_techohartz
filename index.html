@@ -605,6 +605,11 @@ Used for documentation of functions and classes.
 # Comments are ignored by Python
 # They help explain code to humans
 print("Comments do not affect output")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Comments do not affect output
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 15: Module 1 Summary -->
@@ -686,6 +691,12 @@ user_name = "bob123"
 
 print(name)      # Output: Alice
 print(age)       # Output: 25</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Alice
+25
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 19: Data Types -->
@@ -742,6 +753,11 @@ print(type(age))  # Output: <class 'int'>
 sum_val = 10 + 5    # Addition
 diff = 10 - 5       # Subtraction
 product = 10 * 5    # Multiplication</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>&lt;class 'int'&gt;
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 21: Float Type -->
@@ -769,6 +785,11 @@ division = 10 / 3     # 3.333...
 
 # Scientific notation
 big = 1.5e6    # 1500000.0</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>&lt;class 'float'&gt;
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 22: String Type -->
@@ -794,6 +815,13 @@ name = "Alice"
 print(len(name))      # Length: 5
 print(name[0])        # First character: A
 print(name[-1])       # Last character: e</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>5
+A
+e
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 23: Boolean Type -->
@@ -819,6 +847,15 @@ print(not True)         # False
 # Comparison returns boolean
 print(5 > 3)            # True
 print(10 == 20)         # False</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>False
+True
+False
+True
+False
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 24: Input and Output -->
@@ -839,6 +876,13 @@ print("Name:", "Alice", "Age:", 25)
 name = "Bob"
 age = 30
 print(f"Name: {name}, Age: {age}")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Hello, World!
+Name: Alice Age: 25
+Name: Bob, Age: 30
+</code></pre>
+                </div>
                 </div>
             </section>
 
@@ -887,7 +931,26 @@ price_str = "19.99"
 price = float(price_str)  # 19.99
 
 # Integer to float
-x = float(5)            # 5.0</code></pre>
+x = float(5)            # 5.0
+print("age_str:", age_str)
+print("age:", age)
+print("num:", num)
+print("num_str:", num_str)
+print("price_str:", price_str)
+print("price:", price)
+print("x:", x)
+</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>age_str: 25
+age: 25
+num: 100
+num_str: 100
+price_str: 19.99
+price: 19.99
+x: 5.0
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 27: Arithmetic Operators -->
@@ -921,6 +984,17 @@ print(a / b)   # 3.333
 print(a // b)  # 3
 print(a % b)   # 1
 print(a ** b)  # 1000</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>13
+7
+30
+3.3333333333333335
+3
+1
+1000
+</code></pre>
+                </div>
                     </div>
                 </div>
             </section>
@@ -948,6 +1022,14 @@ print(x == y)   # False
 print(x != y)   # True
 print(x > y)    # False
 print(x < y)    # True</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>False
+True
+False
+True
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 29: Logical Operators -->
@@ -978,6 +1060,14 @@ print(not x)    # False
 age = 25
 is_student = False
 print(age > 18 and not is_student)</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>False
+True
+False
+True
+</code></pre>
+                </div>
                     </div>
                 </div>
             </section>
@@ -1002,7 +1092,14 @@ print(age > 18 and not is_student)</code></pre>
                 <pre><code class="language-python">x = 10
 x += 5   # x = x + 5, x is now 15
 x -= 3   # x = x - 3, x is now 12
-x *= 2   # x = x * 2, x is now 24</code></pre>
+x *= 2   # x = x * 2, x is now 24
+print("x:", x)
+</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>x: 24
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 31: Module 2 Summary -->
@@ -1062,6 +1159,12 @@ print(len("Python"))  # 6
 
 # Membership
 print("Py" in "Python")  # True</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>6
+True
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 34: String Methods -->
@@ -1089,6 +1192,13 @@ print("Py" in "Python")  # True</code></pre>
 print(text.upper())     # "  HELLO WORLD  "
 print(text.strip())     # "Hello World"
 print(text.replace("World", "Python"))</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>  HELLO WORLD  
+Hello World
+  Hello Python  
+</code></pre>
+                </div>
                     </div>
                 </div>
             </section>
@@ -1115,6 +1225,14 @@ print("Name: %s, Age: %d" % (name, age))
 # Formatting numbers
 pi = 3.14159
 print(f"Pi: {pi:.2f}")  # Pi: 3.14</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Name: Alice, Age: 25
+Name: Alice, Age: 25
+Name: Alice, Age: 25
+Pi: 3.14
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 36: String Slicing -->
@@ -1140,6 +1258,18 @@ print(text[:-2])    # "Pyth"
 # Step
 print(text[::2])    # "Pto"
 print(text[::-1])   # "nohtyP" (reverse)</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Py
+tho
+Pyt
+hon
+on
+Pyth
+Pto
+nohtyP
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 37: Lists -->
@@ -1160,7 +1290,22 @@ mixed = [1, "hello", 3.14, True]
 
 # Empty list
 empty = []
-empty = list()</code></pre>
+empty = list()
+print("fruits:", fruits)
+print("numbers:", numbers)
+print("mixed:", mixed)
+print("empty:", empty)
+print("empty:", empty)
+</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>fruits: ['apple', 'banana', 'cherry']
+numbers: [1, 2, 3, 4, 5]
+mixed: [1, 'hello', 3.14, True]
+empty: []
+empty: []
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 38: List Indexing and Slicing -->
@@ -1181,6 +1326,15 @@ print(fruits[-1])    # "date"
 print(fruits[1:3])   # ["banana", "cherry"]
 print(fruits[:2])    # ["apple", "banana"]
 print(fruits[::2])   # ["apple", "cherry"]</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>apple
+date
+['banana', 'cherry']
+['apple', 'banana']
+['apple', 'cherry']
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 39: Adding Elements to Lists -->
@@ -1202,7 +1356,14 @@ fruits.insert(1, "blueberry")
 # ["apple", "blueberry", "banana", "cherry"]
 
 # extend() - add multiple
-fruits.extend(["date", "elderberry"])</code></pre>
+fruits.extend(["date", "elderberry"])
+print("fruits:", fruits)
+</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>fruits: ['apple', 'blueberry', 'banana', 'cherry', 'date', 'elderberry']
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 40: Removing Elements from Lists -->
@@ -1226,7 +1387,18 @@ first = fruits.pop(0)      # removes "apple"
 del fruits[0]
 
 # clear() - remove all
-fruits.clear()</code></pre>
+fruits.clear()
+print("fruits:", fruits)
+print("last:", last)
+print("first:", first)
+</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>fruits: []
+last: date
+first: apple
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 41: List Methods -->
@@ -1255,6 +1427,12 @@ nums.sort()           # [1, 1, 3, 4, 5]
 nums.reverse()        # [5, 4, 3, 1, 1]
 print(nums.index(4))  # 1
 print(nums.count(1))  # 2</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>1
+2
+</code></pre>
+                </div>
                     </div>
                 </div>
             </section>
@@ -1283,6 +1461,12 @@ print(person[1])        # 25
 
 # Tuples are immutable
 # coordinates[0] = 30  # Error!</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>10
+25
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 43: Tuple Operations -->
@@ -1308,6 +1492,14 @@ print(2 in t1)      # True
 x, y = (10, 20)
 print(x)            # 10
 print(y)            # 20</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>(1, 2, 1, 2)
+True
+10
+20
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 44: Sets -->
@@ -1333,7 +1525,18 @@ fruits.add("date")
 
 # Removing elements
 fruits.remove("banana")
-fruits.discard("elderberry")  # No error if missing</code></pre>
+fruits.discard("elderberry")  # No error if missing
+print("fruits:", fruits)
+print("numbers:", numbers)
+print("empty:", empty)
+</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>fruits: {'apple', 'cherry', 'date'}
+numbers: {1, 2, 3}
+empty: set()
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 45: Set Operations -->
@@ -1358,6 +1561,14 @@ print(A - B)        # {1, 2}
 
 # Symmetric Difference
 print(A ^ B)        # {1, 2, 5, 6}</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>{1, 2, 3, 4, 5, 6}
+{3, 4}
+{1, 2}
+{1, 2, 5, 6}
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 46: Dictionaries -->
@@ -1382,6 +1593,13 @@ person = {
 print(person["name"])       # "Alice"
 print(person.get("age"))    # 25
 print(person.get("salary", 0))  # 0 (default)</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Alice
+25
+0
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 47: Dictionary Methods -->
@@ -1404,6 +1622,13 @@ person.update({"city": "NYC"})
 
 # pop()
 name = person.pop("name")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>dict_keys(['name', 'age'])
+dict_values(['Alice', 25])
+dict_items([('name', 'Alice'), ('age', 25)])
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 48: Collection Iteration -->
@@ -1427,6 +1652,18 @@ for key, value in person.items():
 # Set iteration
 for item in {1, 2, 3}:
     print(item)</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>apple
+banana
+cherry
+name: Alice
+age: 25
+1
+2
+3
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 49: Membership Testing -->
@@ -1449,6 +1686,15 @@ print("Alice" in person)    # False (checks keys)
 
 # Set membership
 print(3 in {1, 2, 3})       # True</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>True
+False
+True
+False
+True
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 50: Module 3 Summary -->
@@ -1508,6 +1754,12 @@ if age >= 18:
     print("Adult")
 else:
     print("Minor")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>You are an adult.
+Adult
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 53: Elif Statement -->
@@ -1532,6 +1784,11 @@ else:
     grade = "F"
 
 print(f"Grade: {grade}")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Grade: B
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 54: Nested Conditions -->
@@ -1552,6 +1809,11 @@ if age >= 18:
         print("ID required.")
 else:
     print("Too young.")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Entry allowed.
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 55: Match Case -->
@@ -1573,6 +1835,11 @@ match day:
         print("Weekend")
     case _:
         print("Midweek")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Start of week
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 56: For Loop -->
@@ -1594,6 +1861,18 @@ for fruit in fruits:
 # Iterate over string
 for char in "Hello":
     print(char)</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>apple
+banana
+cherry
+H
+e
+l
+l
+o
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 57: While Loop -->
@@ -1640,6 +1919,22 @@ for i in range(1, 4):
 # 1 x 2 = 2
 # 1 x 3 = 3
 # ...</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>1 x 1 = 1
+1 x 2 = 2
+1 x 3 = 3
+
+2 x 1 = 2
+2 x 2 = 4
+2 x 3 = 6
+
+3 x 1 = 3
+3 x 2 = 6
+3 x 3 = 9
+
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 59: Break Statement -->
@@ -1666,6 +1961,12 @@ for fruit in fruits:
     if fruit == "banana":
         print("Found banana!")
         break</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Found: 8
+Found banana!
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 60: Continue Statement -->
@@ -1691,6 +1992,18 @@ for name in names:
     if name == "":
         continue
     print(f"Hello, {name}!")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>1
+3
+5
+7
+9
+Hello, Alice!
+Hello, Bob!
+Hello, Charlie!
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 61: Pass Statement -->
@@ -1739,6 +2052,24 @@ for i in range(0, 10, 2):
 
 # Convert to list
 numbers = list(range(5))  # [0, 1, 2, 3, 4]</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>0
+1
+2
+3
+4
+2
+3
+4
+5
+0
+2
+4
+6
+8
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 63: Module 4 Summary -->
@@ -1800,6 +2131,12 @@ def greet_user(name):
     print(f"Hello, {name}!")
 
 greet_user("Alice")  # Output: Hello, Alice!</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Hello, World!
+Hello, Alice!
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 66: Parameters and Arguments -->
@@ -1828,6 +2165,13 @@ def person_info(name, age, city):
     print(f"{name}, {age}, {city}")
 
 person_info(age=25, city="NYC", name="Alice")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Hello, Alice!
+Hi, Bob!
+Alice, 25, NYC
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 67: Return Values -->
@@ -1857,6 +2201,13 @@ def say_hello():
     print("Hello")
 
 result = say_hello()  # result is None</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>1
+5
+Hello
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 68: Variable Scope -->
@@ -1884,6 +2235,12 @@ counter = 0
 def increment():
     global counter
     counter += 1</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Alice
+Bob
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 69: Lambda Functions -->
@@ -1909,6 +2266,13 @@ print(add(3, 4))  # 7
 numbers = [1, 2, 3, 4]
 squared = list(map(lambda x: x**2, numbers))
 print(squared)  # [1, 4, 9, 16]</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>25
+7
+[1, 4, 9, 16]
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 70: Built-in Functions -->
@@ -1998,7 +2362,14 @@ PI = 3.14159
 
 class Circle:
     def __init__(self, radius):
-        self.radius = radius</code></pre>
+        self.radius = radius
+print("PI:", PI)
+</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>PI: 3.14159
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 74: Importing Modules -->
@@ -2024,6 +2395,13 @@ import pandas as pd
 
 # Import all (not recommended)
 from math import *</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>3.141592653589793
+3.141592653589793
+4.0
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 75: Math Module -->
@@ -2046,6 +2424,17 @@ print(math.pow(2, 3))    # 8.0
 print(math.ceil(4.2))    # 5
 print(math.floor(4.8))   # 4
 print(math.factorial(5)) # 120</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>3.141592653589793
+2.718281828459045
+4.0
+8.0
+5
+4
+120
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 76: Random Module -->
@@ -2073,6 +2462,14 @@ random.shuffle(fruits)
 
 # Random sample
 print(random.sample(range(100), 5))</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>0.22533864605407616
+8
+cherry
+[79, 35, 8, 43, 13]
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 77: Datetime Module -->
@@ -2098,6 +2495,13 @@ date = datetime.strptime("2024-01-15", "%Y-%m-%d")
 # Add time
 future = now + timedelta(days=7)
 print(future)</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>2026-06-25 14:50:53.767840
+2026-06-25 14:50:53
+2026-07-02 14:50:53.767840
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 78: Module 6 Summary -->
@@ -2401,6 +2805,11 @@ my_dog = Dog()
 your_dog = Dog()
 
 print(type(my_dog))  # <class '__main__.Dog'></code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>&lt;class 'Dog'&gt;
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 92: Attributes and Methods -->
@@ -2427,6 +2836,12 @@ print(type(my_dog))  # <class '__main__.Dog'></code></pre>
 my_dog = Dog("Buddy", 3)
 print(my_dog.name)   # Buddy
 print(my_dog.bark()) # Buddy says woof!</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Buddy
+Buddy says woof!
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 93: Constructors -->
@@ -2450,6 +2865,12 @@ print(my_dog.bark()) # Buddy says woof!</code></pre>
 person = Person("Alice", 25)
 print(person.name)   # Alice
 print(person.email)  # alice@example.com</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Alice
+alice@example.com
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 94: Module 9 Summary -->
@@ -2549,6 +2970,11 @@ def generate_password(length=12):
 # Generate password
 new_password = generate_password(16)
 print(f"Generated password: {new_password}")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Generated password: eM.muSnb=t/wJ5^-
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 98: To-Do List -->
@@ -2578,6 +3004,11 @@ print(f"Generated password: {new_password}")</code></pre>
 todo = TodoList()
 todo.add_task("Learn Python")
 todo.show_tasks()</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>0: Learn Python
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 99: Student Management System -->
@@ -2662,6 +3093,12 @@ def fibonacci(n):
     return fibonacci(n-1) + fibonacci(n-2)
 
 print(fibonacci(7))  # 13</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>120
+13
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 103: List Comprehensions -->
@@ -2682,7 +3119,18 @@ evens = [x for x in range(10) if x % 2 == 0]
 
 # Nested comprehension
 matrix = [[i*j for j in range(3)] for i in range(3)]
-# [[0, 0, 0], [0, 1, 2], [0, 2, 4]]</code></pre>
+# [[0, 0, 0], [0, 1, 2], [0, 2, 4]]
+print("squares:", squares)
+print("evens:", evens)
+print("matrix:", matrix)
+</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>squares: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+evens: [0, 2, 4, 6, 8]
+matrix: [[0, 0, 0], [0, 1, 2], [0, 2, 4]]
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 104: Dictionary Comprehensions -->
@@ -2701,7 +3149,20 @@ squares = {x: x**2 for x in range(5)}
 names = ["Alice", "Bob", "Charlie"]
 ages = [25, 30, 35]
 person_dict = {name: age for name, age in zip(names, ages)}
-# {'Alice': 25, 'Bob': 30, 'Charlie': 35}</code></pre>
+# {'Alice': 25, 'Bob': 30, 'Charlie': 35}
+print("squares:", squares)
+print("names:", names)
+print("ages:", ages)
+print("person_dict:", person_dict)
+</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>squares: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+names: ['Alice', 'Bob', 'Charlie']
+ages: [25, 30, 35]
+person_dict: {'Alice': 25, 'Bob': 30, 'Charlie': 35}
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 105: Iterators -->
@@ -2734,6 +3195,13 @@ class CountDown:
             raise StopIteration
         self.start -= 1
         return self.start + 1</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>1
+2
+3
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 106: Generators -->
@@ -2758,6 +3226,15 @@ for num in count_up_to(5):
 # Generator expression
 squares = (x**2 for x in range(1000000))
 # Memory efficient!</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>1
+2
+3
+4
+5
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 107: Enumerate and Zip -->
@@ -2777,6 +3254,13 @@ for index, fruit in enumerate(fruits):
 # 0: apple
 # 1: banana
 # 2: cherry</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>0: apple
+1: banana
+2: cherry
+</code></pre>
+                </div>
                     </div>
                     <div>
                         <h4>Zip</h4>
@@ -2786,6 +3270,12 @@ for name, age in zip(names, ages):
     print(f"{name} is {age}")
 # Alice is 25
 # Bob is 30</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Alice is 25
+Bob is 30
+</code></pre>
+                </div>
                     </div>
                 </div>
             </section>
@@ -2810,6 +3300,14 @@ def print_info(**kwargs):
         print(f"{key}: {value}")
 
 print_info(name="Alice", age=25, city="NYC")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>10
+name: Alice
+age: 25
+city: NYC
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 109: Module 10 Summary -->
@@ -3164,6 +3662,11 @@ class Cat(Animal):
 
 dog = Dog("Buddy")
 print(dog.speak())  # Buddy says woof!</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Buddy says woof!
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 126: Polymorphism -->
@@ -3247,6 +3750,12 @@ class Car(Vehicle):
 
 print(Person.get_count())
 print(Person.is_adult(20))</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>0
+True
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 129: Module 14 Summary -->
@@ -3303,7 +3812,29 @@ identity = np.eye(3)          # 3x3 identity
 
 # Ranges
 arr = np.arange(0, 10, 2)     # [0, 2, 4, 6, 8]
-arr = np.linspace(0, 1, 5)    # 5 values from 0 to 1</code></pre>
+arr = np.linspace(0, 1, 5)    # 5 values from 0 to 1
+print("arr:", arr)
+print("zeros:", zeros)
+print("ones:", ones)
+print("identity:", identity)
+print("arr:", arr)
+print("arr:", arr)
+</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>arr: [0.   0.25 0.5  0.75 1.  ]
+zeros: [[0. 0. 0.]
+ [0. 0. 0.]
+ [0. 0. 0.]]
+ones: [[1. 1. 1. 1.]
+ [1. 1. 1. 1.]]
+identity: [[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]
+arr: [0.   0.25 0.5  0.75 1.  ]
+arr: [0.   0.25 0.5  0.75 1.  ]
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 132: Array Operations -->
@@ -3327,6 +3858,15 @@ print(a ** 2) # [1, 4, 9]
 # Universal functions
 print(np.sqrt(a))   # [1, 1.414, 1.732]
 print(np.exp(a))    # [2.718, 7.389, 20.086]</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>[5 7 9]
+[ 4 10 18]
+[1 4 9]
+[1.         1.41421356 1.73205081]
+[ 2.71828183  7.3890561  20.08553692]
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 133: Array Indexing -->
@@ -3350,6 +3890,15 @@ print(arr[1, 2])    # 6
 # Slicing
 print(arr[0:2, 1:3])  # [[2, 3], [5, 6]]
 print(arr[:, 0])      # [1, 4, 7]</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>1
+6
+[[2 3]
+ [5 6]]
+[1 4 7]
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 134: Module 15 Summary -->
@@ -3405,6 +3954,17 @@ print(s['a'])  # 1
 
 # From dictionary
 s = pd.Series({'a': 1, 'b': 2, 'c': 3})</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>0    1
+1    2
+2    3
+3    4
+4    5
+dtype: int64
+1
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 137: DataFrames -->
@@ -3430,6 +3990,22 @@ print(df)
 # Access columns
 print(df['Name'])
 print(df[['Name', 'Age']])</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>      Name  Age     City
+0    Alice   25      NYC
+1      Bob   30       LA
+2  Charlie   35  Chicago
+0      Alice
+1        Bob
+2    Charlie
+Name: Name, dtype: object
+      Name  Age
+0    Alice   25
+1      Bob   30
+2  Charlie   35
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 138: Reading CSV -->
@@ -3665,6 +4241,15 @@ print(data['name'])  # Alice
 person = {'name': 'Bob', 'age': 30}
 json_string = json.dumps(person, indent=4)
 print(json_string)</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Alice
+{
+    "name": "Bob",
+    "age": 30
+}
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 150: Data Processing -->
