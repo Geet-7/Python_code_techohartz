@@ -21,6 +21,16 @@
             --gray: #64748b;
             --light: #f8fafc;
             --code-bg: #1e1e2e;
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f4f8;
         }
 
         .reveal {
@@ -76,11 +86,12 @@
             background: transparent;
             padding: 0;
             font-size: 0.9em;
+            color: #e2e8f0;
         }
 
         /* Slide Types */
         .slide-title {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
             color: white !important;
         }
 
@@ -130,13 +141,33 @@
         .box-purple { background: #faf5ff; border: 1px solid #e9d5ff; }
         .box-cyan { background: #ecfeff; border: 1px solid #a5f3fc; }
 
+        /* Explanation Box */
+        .explanation {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            text-align: left;
+            font-size: 0.8em;
+        }
+
+        .explanation strong {
+            color: var(--accent);
+        }
+
+        .explanation p {
+            margin: 5px 0;
+            color: #78350f;
+        }
+
         /* Progress Bar */
         .progress-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             height: 4px;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
             transition: width 0.3s ease;
             z-index: 1000;
         }
@@ -163,7 +194,7 @@
             transition: all 0.2s;
         }
 
-        .nav-btn:hover { background: var(--primary-dark); }
+        .nav-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
 
         /* Table of Contents */
         .toc {
@@ -175,14 +206,15 @@
         }
 
         .toc-item {
-            padding: 8px 12px;
+            padding: 10px 14px;
             background: #f1f5f9;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
+            border-left: 3px solid var(--primary);
         }
 
-        .toc-item:hover { background: #e2e8f0; }
+        .toc-item:hover { background: #e2e8f0; transform: translateX(5px); }
 
         /* Quiz Styles */
         .quiz-option {
@@ -199,7 +231,7 @@
             font-size: 0.85em;
         }
 
-        .quiz-option:hover { border-color: var(--primary); }
+        .quiz-option:hover { border-color: var(--primary); background: #eff6ff; }
         .quiz-option.correct { background: #f0fdf4; border-color: var(--secondary); }
         .quiz-option.wrong { background: #fef2f2; border-color: var(--danger); }
 
@@ -211,14 +243,37 @@
             text-align: left;
         }
 
-        /* Safe Zone */
-        .slides { padding: 60px !important; }
-        .reveal .slides section { padding: 40px !important; }
+        .reveal .slides section {
+            padding: 20px 40px 30px 40px !important;
+            height: 100% !important;
+            overflow-y: auto !important;
+            box-sizing: border-box !important;
+        }
+
+        .reveal .slides section[aria-hidden="true"] {
+            visibility: hidden !important;
+        }
+
+        .reveal .slides section[aria-hidden="false"] {
+            visibility: visible !important;
+        }
+
+        /* Section divider */
+        .section-divider {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white !important;
+        }
+
+        .section-divider h1, .section-divider h2, .section-divider p {
+            color: white !important;
+        }
 
         /* Print Styles */
         @media print {
             .nav-controls, .progress-bar { display: none; }
         }
+
+        /* No custom animation - let Reveal.js handle transitions natively */
     </style>
 </head>
 <body>
@@ -226,11 +281,11 @@
         <div class="slides">
             <!-- Slide 1: Title -->
             <section class="slide-title">
-                <h1>Complete Python Bootcamp</h1>
+                <h1>🐍 Complete Python Bootcamp</h1>
                 <p style="font-size: 1.2em; margin-top: 30px;">From Zero to Hero in 30 Days</p>
                 <p style="font-size: 0.9em; margin-top: 20px; opacity: 0.9;">Master Python Programming with Real-World Projects</p>
                 <div style="margin-top: 60px;">
-                    <p style="font-size: 0.8em;">Interactive Presentation | 180+ Slides</p>
+                    <p style="font-size: 0.8em;">Interactive Presentation | 165+ Slides | Hands-on Learning</p>
                 </div>
             </section>
 
@@ -238,6 +293,10 @@
             <section>
                 <span class="badge badge-concept">Overview</span>
                 <h2>What You Will Learn</h2>
+                <div class="explanation">
+                    <strong>📖 Course Structure:</strong>
+                    <p>This bootcamp is divided into two parts. Part 1 covers Python fundamentals with hands-on projects. Part 2 dives into advanced concepts, data analysis libraries (NumPy, Pandas), and data visualization with Matplotlib.</p>
+                </div>
                 <div class="two-col" style="margin-top: 30px;">
                     <div class="box box-blue">
                         <h4>Part 1: Fundamentals (15 Days)</h4>
@@ -266,6 +325,10 @@
             <section>
                 <span class="badge badge-concept">Navigation</span>
                 <h2>Course Modules</h2>
+                <div class="explanation">
+                    <strong>📖 How to Navigate:</strong>
+                    <p>Use arrow keys or swipe to move between slides. Each module builds upon the previous one. The table below shows all 18 modules covered in this bootcamp.</p>
+                </div>
                 <div class="toc" style="margin-top: 20px;">
                     <div class="toc-item">1. Introduction to Programming</div>
                     <div class="toc-item">2. Python Fundamentals</div>
@@ -278,7 +341,13 @@
                     <div class="toc-item">9. Introduction to OOP</div>
                     <div class="toc-item">10. Advanced Functions</div>
                     <div class="toc-item">11. Advanced Modules</div>
-                    <div class="toc-item">12. Advanced OOP</div>
+                    <div class="toc-item">12. Advanced Exception Handling</div>
+                    <div class="toc-item">13. Advanced File Handling</div>
+                    <div class="toc-item">14. Advanced OOP</div>
+                    <div class="toc-item">15. NumPy</div>
+                    <div class="toc-item">16. Pandas</div>
+                    <div class="toc-item">17. Matplotlib</div>
+                    <div class="toc-item">18. Python Applications</div>
                 </div>
             </section>
 
@@ -287,6 +356,10 @@
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 1</span>
                 <h2>Introduction to Programming and Python</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>This module lays the foundation. You'll learn what programming is, why Python is a great first language, and how to set up your development environment to start coding.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -302,6 +375,10 @@
             <section class="slide-concept">
                 <span class="badge badge-concept">Concept</span>
                 <h2>What is Programming?</h2>
+                <div class="explanation">
+                    <strong>📖 Simple Explanation:</strong>
+                    <p>Think of programming like writing a recipe. A recipe tells a cook exactly what steps to follow to make a dish. Similarly, a program tells a computer exactly what steps to follow to perform a task.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Programming is the process of creating a set of instructions that tell a computer how to perform a task.</p>
                 </div>
@@ -320,6 +397,10 @@
             <section class="slide-example">
                 <span class="badge badge-example">Real World</span>
                 <h2>Programming in the Real World</h2>
+                <div class="explanation">
+                    <strong>📖 Why This Matters:</strong>
+                    <p>Programming isn't just for tech companies. Every industry relies on software - from hospitals using patient management systems to banks processing millions of transactions. Learning to code opens doors in virtually every field.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Everyday Applications</h4>
@@ -348,6 +429,10 @@
             <section class="slide-concept">
                 <span class="badge badge-concept">Concept</span>
                 <h2>What is Python?</h2>
+                <div class="explanation">
+                    <strong>📖 History & Context:</strong>
+                    <p>Python was created by Guido van Rossum in 1991. He named it after the comedy group "Monty Python," not the snake! Python was designed with a focus on code readability, making it one of the most beginner-friendly languages.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Python</strong> is a high-level, interpreted programming language created by Guido van Rossum in 1991.</p>
                 </div>
@@ -356,7 +441,7 @@
                     <ul>
                         <li><strong>High-level:</strong> Close to human language, easy to read</li>
                         <li><strong>Interpreted:</strong> No compilation needed, runs line by line</li>
-                        <li><strong>Dynamically Typed," + " Typed:</strong> Variable types determined at runtime</li>
+                        <li><strong>Dynamically Typed:</strong> Variable types determined at runtime</li>
                         <li><strong>Object-Oriented:</strong> Supports OOP principles</li>
                         <li><strong>General Purpose:</strong> Used for web, data, AI, automation</li>
                     </ul>
@@ -367,6 +452,10 @@
             <section class="slide-concept">
                 <span class="badge badge-concept">Features</span>
                 <h2>Features of Python</h2>
+                <div class="explanation">
+                    <strong>📖 Why Python Stands Out:</strong>
+                    <p>Python's "batteries included" philosophy means it comes with a rich standard library. Its simple syntax reduces the cost of program maintenance. The large community means you'll always find help when stuck.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Language Features</h4>
@@ -395,6 +484,10 @@
             <section class="slide-example">
                 <span class="badge badge-example">Applications</span>
                 <h2>Applications of Python</h2>
+                <div class="explanation">
+                    <strong>📖 Real-World Usage:</strong>
+                    <p>Python powers some of the world's most popular services. Instagram runs on Django, Spotify uses Python for data analysis, and NASA uses it for scientific computing. The versatility is unmatched.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div class="box box-green">
                         <h4>Web Development</h4>
@@ -419,6 +512,10 @@
             <section class="slide-practice">
                 <span class="badge badge-practice">Setup</span>
                 <h2>Installing Python</h2>
+                <div class="explanation">
+                    <strong>📖 Setup Guide:</strong>
+                    <p>Before writing code, you need Python installed on your computer. The official installer from python.org is the safest option. Make sure to check "Add to PATH" on Windows - this lets you run Python from any terminal.</p>
+                </div>
                 <div class="box box-cyan" style="margin-top: 20px;">
                     <h4>Step 1: Download Python</h4>
                     <p>Visit <code>python.org</code> and download the latest version for your OS</p>
@@ -437,6 +534,10 @@
             <section class="slide-practice">
                 <span class="badge badge-practice">Setup</span>
                 <h2>Setting Up VS Code</h2>
+                <div class="explanation">
+                    <strong>📖 Why VS Code?:</strong>
+                    <p>Visual Studio Code is a free, lightweight, and powerful code editor. With the Python extension, you get features like IntelliSense (auto-completion), debugging, and linting that make coding much easier.</p>
+                </div>
                 <div style="text-align: left; margin-top: 20px;">
                     <h4>Steps</h4>
                     <ol>
@@ -452,7 +553,11 @@
             <section class="slide-example">
                 <span class="badge badge-example">Example</span>
                 <h2>Your First Python Program</h2>
-                <pre><code class="language-python"># This is a comment
+                <div class="explanation">
+                    <strong>📖 Code Breakdown:</strong>
+                    <p><code>print()</code> is a built-in function that displays text on the screen. The text inside quotes is called a "string." The <code>#</code> symbol starts a comment - Python ignores everything after it on that line.</p>
+                </div>
+                <pre><code class="language-python"># This is a comment - Python ignores it
 # Print a message to the screen
 print("Hello, World!")
 print("Welcome to Python!")</code></pre>
@@ -467,6 +572,10 @@ Welcome to Python!</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Syntax</span>
                 <h2>Python Syntax Rules</h2>
+                <div class="explanation">
+                    <strong>📖 Why Indentation Matters:</strong>
+                    <p>Unlike other languages that use braces <code>{}</code>, Python uses indentation (spaces) to define code blocks. This forces clean, readable code. The standard is 4 spaces per indentation level.</p>
+                </div>
                 <div style="text-align: left; margin-top: 20px;">
                     <ul>
                         <li><strong>Case Sensitive:</strong> <code>name</code> and <code>Name</code> are different</li>
@@ -480,13 +589,17 @@ Welcome to Python!</code></pre>
             <!-- Slide 14: Comments -->
             <section class="slide-concept">
                 <span class="badge badge-concept">Concept</span>
-                <h2>Comments annotations in Python</h2>
-                <pre><code class="language-python"># Single line comment
+                <h2>Comments in Python</h2>
+                <div class="explanation">
+                    <strong>📖 Why Comment?:</strong>
+                    <p>Comments explain WHY code does something, not WHAT it does. Good comments save hours of confusion when you (or someone else) revisit code months later. The triple-quote style is also used for docstrings (documentation).</p>
+                </div>
+                <pre><code class="language-python"># Single line comment - for brief notes
 
 """
-Multi-line comment
-This can span multiple lines
-Used for documentation
+Multi-line comment (docstring)
+This can span multiple lines.
+Used for documentation of functions and classes.
 """
 
 # Comments are ignored by Python
@@ -515,6 +628,10 @@ print("Comments do not affect output")</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 2</span>
                 <h2>Python Fundamentals</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>This module covers the building blocks of Python. Variables store data, data types define what kind of data, operators manipulate data, and input/output let your program interact with users.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -530,6 +647,10 @@ print("Comments do not affect output")</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Concept</span>
                 <h2>Variables</h2>
+                <div class="explanation">
+                    <strong>📖 Analogy:</strong>
+                    <p>Think of a variable as a labeled box. You put something in the box (a value) and label it (variable name). Whenever you need that value, you just refer to the label. The box can hold different things at different times.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> A variable is a named container that stores data in memory.</p>
                 </div>
@@ -548,6 +669,10 @@ print("Comments do not affect output")</code></pre>
             <section class="slide-example">
                 <span class="badge badge-example">Example</span>
                 <h2>Creating Variables</h2>
+                <div class="explanation">
+                    <strong>📖 Naming Conventions:</strong>
+                    <p>Use <code>snake_case</code> for variable names (lowercase with underscores). Choose descriptive names - <code>user_age</code> is better than <code>x</code>. Avoid single-letter names except in loops.</p>
+                </div>
                 <pre><code class="language-python"># Valid variable names
 name = "Alice"
 age = 25
@@ -567,6 +692,10 @@ print(age)       # Output: 25</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Concept</span>
                 <h2>Data Types in Python</h2>
+                <div class="explanation">
+                    <strong>📖 Why Types Matter:</strong>
+                    <p>Data types tell Python how to store and manipulate values. You can't do math on text, and you can't capitalize a number. Python is dynamically typed - you don't need to declare types, Python figures it out.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Basic Types</h4>
@@ -593,6 +722,10 @@ print(age)       # Output: 25</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Data Type</span>
                 <h2>Integer (int)</h2>
+                <div class="explanation">
+                    <strong>📖 Key Point:</strong>
+                    <p>Integers are whole numbers without decimals. Python integers have unlimited precision - unlike many languages, they can be as large as your memory allows. Use <code>type()</code> to check any variable's type.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Whole numbers without decimal points.</p>
                 </div>
@@ -615,6 +748,10 @@ product = 10 * 5    # Multiplication</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Data Type</span>
                 <h2>Float (float)</h2>
+                <div class="explanation">
+                    <strong>📖 Precision Note:</strong>
+                    <p>Floats represent real numbers with decimal points. Be aware of floating-point precision issues: <code>0.1 + 0.2</code> may not equal exactly <code>0.3</code> due to how computers store decimals in binary.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Numbers with decimal points.</p>
                 </div>
@@ -638,6 +775,10 @@ big = 1.5e6    # 1500000.0</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Data Type</span>
                 <h2>String (str)</h2>
+                <div class="explanation">
+                    <strong>📖 String Basics:</strong>
+                    <p>Strings are sequences of characters. You can use single quotes, double quotes, or triple quotes. Triple quotes allow multi-line strings. Strings are immutable - once created, they cannot be changed (but you can create new ones).</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Sequence of characters enclosed in quotes.</p>
                 </div>
@@ -659,6 +800,10 @@ print(name[-1])       # Last character: e</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Data Type</span>
                 <h2>Boolean (bool)</h2>
+                <div class="explanation">
+                    <strong>📖 True or False:</strong>
+                    <p>Booleans are the simplest data type - only two possible values. They're essential for decision-making in code (if statements, loops). Note: <code>True</code> and <code>False</code> must be capitalized in Python.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Represents True or False values.</p>
                 </div>
@@ -680,6 +825,10 @@ print(10 == 20)         # False</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Concept</span>
                 <h2>Input and Output</h2>
+                <div class="explanation">
+                    <strong>📖 I/O Basics:</strong>
+                    <p><code>print()</code> sends data to the console (output). <code>input()</code> reads data from the user (input). f-strings (the <code>f"..."</code> syntax) are the modern, cleanest way to format output with variables embedded directly in the string.</p>
+                </div>
                 <div style="text-align: left; margin-top: 20px;">
                     <h4>Output with print()</h4>
                     <pre><code class="language-python"># Basic output
@@ -697,8 +846,12 @@ print(f"Name: {name}, Age: {age}")</code></pre>
             <section class="slide-example">
                 <span class="badge badge-example">Example</span>
                 <h2>Getting User Input</h2>
+                <div class="explanation">
+                    <strong>📖 Important:</strong>
+                    <p><code>input()</code> ALWAYS returns a string, even if the user types a number. You must convert it using <code>int()</code> or <code>float()</code> if you need to do math with the input value.</p>
+                </div>
                 <pre><code class="language-python"># Get user input
-name =" + " input("Enter your name: ")
+name = input("Enter your name: ")
 age = input("Enter your age: ")
 
 # Display the input
@@ -714,6 +867,10 @@ age_int = int(age)</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Concept</span>
                 <h2>Type Casting</h2>
+                <div class="explanation">
+                    <strong>📖 When to Cast:</strong>
+                    <p>Type casting is essential when you need to convert between types - like turning user input (always a string) into numbers for calculations, or converting numbers to strings for display.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Converting one data type to another.</p>
                 </div>
@@ -737,6 +894,10 @@ x = float(5)            # 5.0</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Operators</span>
                 <h2>Arithmetic Operators</h2>
+                <div class="explanation">
+                    <strong>📖 Operator Notes:</strong>
+                    <p><code>/</code> always returns a float. <code>//</code> (floor division) truncates the decimal. <code>%</code> (modulus) gives the remainder - very useful for checking even/odd numbers. <code>**</code> is exponentiation.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Basic Operators</h4>
@@ -768,6 +929,10 @@ print(a ** b)  # 1000</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Operators</span>
                 <h2>Comparison Operators</h2>
+                <div class="explanation">
+                    <strong>📖 Usage:</strong>
+                    <p>Comparison operators always return a Boolean (<code>True</code> or <code>False</code>). They're primarily used in <code>if</code> statements and loops to make decisions. <code>==</code> checks equality, <code>=</code> assigns values - don't confuse them!</p>
+                </div>
                 <div style="text-align: left; margin-top: 20px;">
                     <ul>
                         <li><code>==</code> Equal to</li>
@@ -789,6 +954,10 @@ print(x < y)    # True</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Operators</span>
                 <h2>Logical Operators</h2>
+                <div class="explanation">
+                    <strong>📖 Short-Circuit Evaluation:</strong>
+                    <p>Python uses short-circuit evaluation: in <code>a and b</code>, if <code>a</code> is False, <code>b</code> is never evaluated. In <code>a or b</code>, if <code>a</code> is True, <code>b</code> is skipped. This can improve performance.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Operators</h4>
@@ -817,6 +986,10 @@ print(age > 18 and not is_student)</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Operators</span>
                 <h2>Assignment Operators</h2>
+                <div class="explanation">
+                    <strong>📖 Shorthand:</strong>
+                    <p>Assignment operators are shortcuts. Instead of writing <code>x = x + 5</code>, you can write <code>x += 5</code>. This is cleaner and less error-prone. All arithmetic operators have corresponding assignment versions.</p>
+                </div>
                 <div style="text-align: left; margin-top: 20px;">
                     <ul>
                         <li><code>=</code> Simple assignment</li>
@@ -853,6 +1026,10 @@ x *= 2   # x = x * 2, x is now 24</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 3</span>
                 <h2>Strings and Collections</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>This module covers how to work with text (strings) and collections of data (lists, tuples, sets, dictionaries). These are the most frequently used data structures in Python - you'll use them in virtually every program.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -868,6 +1045,10 @@ x *= 2   # x = x * 2, x is now 24</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Strings</span>
                 <h2>String Operations</h2>
+                <div class="explanation">
+                    <strong>📖 String Manipulation:</strong>
+                    <p>Strings support <code>+</code> (concatenation) to join them and <code>*</code> (repetition) to repeat them. The <code>in</code> operator checks if a substring exists within a string - very useful for searching.</p>
+                </div>
                 <pre><code class="language-python"># Concatenation
 first = "Hello"
 second = "World"
@@ -887,6 +1068,10 @@ print("Py" in "Python")  # True</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Strings</span>
                 <h2>String Methods</h2>
+                <div class="explanation">
+                    <strong>📖 Method Chaining:</strong>
+                    <p>String methods return NEW strings (strings are immutable). You can chain methods: <code>text.strip().upper()</code> first removes whitespace, then converts to uppercase. This is a common Python pattern.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Common Methods</h4>
@@ -912,6 +1097,10 @@ print(text.replace("World", "Python"))</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Strings</span>
                 <h2>String Formatting</h2>
+                <div class="explanation">
+                    <strong>📖 f-strings Are Best:</strong>
+                    <p>f-strings (formatted string literals) were introduced in Python 3.6 and are now the preferred way to format strings. They're more readable and faster than older methods. Use <code>{variable:.2f}</code> to format numbers to 2 decimal places.</p>
+                </div>
                 <pre><code class="language-python"># f-strings (recommended)
 name = "Alice"
 age = 25
@@ -920,7 +1109,7 @@ print(f"Name: {name}, Age: {age}")
 # format() method
 print("Name: {}, Age: {}".format(name, age))
 
-# Percentage formatting
+# Percentage formatting (old style)
 print("Name: %s, Age: %d" % (name, age))
 
 # Formatting numbers
@@ -932,6 +1121,10 @@ print(f"Pi: {pi:.2f}")  # Pi: 3.14</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Strings</span>
                 <h2>String Slicing</h2>
+                <div class="explanation">
+                    <strong>📖 Slice Syntax:</strong>
+                    <p>The syntax is <code>[start:stop:step]</code>. Start is inclusive, stop is exclusive. Negative indices count from the end. <code>[::-1]</code> is a common trick to reverse a string.</p>
+                </div>
                 <pre><code class="language-python">text = "Python"
 
 # Basic slicing
@@ -953,6 +1146,10 @@ print(text[::-1])   # "nohtyP" (reverse)</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Collections</span>
                 <h2>Lists</h2>
+                <div class="explanation">
+                    <strong>📖 List Characteristics:</strong>
+                    <p>Lists are the most versatile Python collection. They're ordered (items have a position), mutable (can be changed), and allow duplicates. Use lists when you need a sequence of items that may change.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Ordered, mutable collection of items.</p>
                 </div>
@@ -970,6 +1167,10 @@ empty = list()</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Lists</span>
                 <h2>List Indexing and Slicing</h2>
+                <div class="explanation">
+                    <strong>📖 Zero-Based Indexing:</strong>
+                    <p>Python uses zero-based indexing - the first element is at index 0. Negative indices count from the end (-1 is the last element). Slicing works exactly like string slicing.</p>
+                </div>
                 <pre><code class="language-python">fruits = ["apple", "banana", "cherry", "date"]
 
 # Indexing
@@ -986,6 +1187,10 @@ print(fruits[::2])   # ["apple", "cherry"]</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Lists</span>
                 <h2>Adding Elements to Lists</h2>
+                <div class="explanation">
+                    <strong>📖 Method Differences:</strong>
+                    <p><code>append()</code> adds one item to the end. <code>insert()</code> adds at a specific position. <code>extend()</code> adds multiple items from another iterable. Choose based on where and how many items you need to add.</p>
+                </div>
                 <pre><code class="language-python">fruits = ["apple", "banana"]
 
 # append() - add to end
@@ -1004,6 +1209,10 @@ fruits.extend(["date", "elderberry"])</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Lists</span>
                 <h2>Removing Elements from Lists</h2>
+                <div class="explanation">
+                    <strong>📖 Remove vs Pop vs Del:</strong>
+                    <p><code>remove()</code> removes by value (first occurrence). <code>pop()</code> removes by index and returns the removed item. <code>del</code> deletes by index without returning. <code>clear()</code> empties the entire list.</p>
+                </div>
                 <pre><code class="language-python">fruits = ["apple", "banana", "cherry", "date"]
 
 # remove() - by value
@@ -1024,7 +1233,11 @@ fruits.clear()</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Lists</span>
                 <h2>List Methods</h2>
-                <div class="two-col" style出入于 20px;">
+                <div class="explanation">
+                    <strong>📖 In-Place vs Return:</strong>
+                    <p><code>sort()</code> and <code>reverse()</code> modify the list in-place and return <code>None</code>. If you need a sorted copy without modifying the original, use <code>sorted(list)</code> instead.</p>
+                </div>
+                <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Common Methods</h4>
                         <ul>
@@ -1050,6 +1263,10 @@ print(nums.count(1))  # 2</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Collections</span>
                 <h2>Tuples</h2>
+                <div class="explanation">
+                    <strong>📖 Why Tuples?:</strong>
+                    <p>Tuples are like lists but immutable - once created, they cannot be changed. This makes them safer for data that shouldn't change (like coordinates, database records). They're also slightly faster than lists.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Ordered, immutable collection of items.</p>
                 </div>
@@ -1072,6 +1289,10 @@ print(person[1])        # 25
             <section class="slide-concept">
                 <span class="badge badge-concept">Tuples</span>
                 <h2>Tuple Operations</h2>
+                <div class="explanation">
+                    <strong>📖 Tuple Unpacking:</strong>
+                    <p>Tuple unpacking lets you assign multiple variables at once: <code>x, y = (10, 20)</code>. This is incredibly useful for swapping values (<code>a, b = b, a</code>) and returning multiple values from functions.</p>
+                </div>
                 <pre><code class="language-python"># Concatenation
 t1 = (1, 2)
 t2 = (3, 4)
@@ -1093,6 +1314,10 @@ print(y)            # 20</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Collections</span>
                 <h2>Sets</h2>
+                <div class="explanation">
+                    <strong>📖 Set Use Cases:</strong>
+                    <p>Sets automatically remove duplicates and are optimized for membership testing (<code>in</code> operator). Use sets when you need unique values or want to perform mathematical set operations like union and intersection.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Unordered collection of unique items.</p>
                 </div>
@@ -1115,6 +1340,10 @@ fruits.discard("elderberry")  # No error if missing</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Sets</span>
                 <h2>Set Operations</h2>
+                <div class="explanation">
+                    <strong>📖 Math-Like Operations:</strong>
+                    <p>Sets support mathematical operations: union (all items), intersection (common items), difference (items in A but not B), and symmetric difference (items in either but not both).</p>
+                </div>
                 <pre><code class="language-python">A = {1, 2, 3, 4}
 B = {3, 4, 5, 6}
 
@@ -1135,6 +1364,10 @@ print(A ^ B)        # {1, 2, 5, 6}</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Collections</span>
                 <h2>Dictionaries</h2>
+                <div class="explanation">
+                    <strong>📖 Key-Value Pairs:</strong>
+                    <p>Dictionaries map keys to values, like a real dictionary maps words to definitions. Keys must be unique and immutable (strings, numbers, tuples). Values can be anything. Dictionaries are the backbone of Python's object system.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Key-value pairs for storing data.</p>
                 </div>
@@ -1147,7 +1380,7 @@ person = {
 
 # Accessing values
 print(person["name"])       # "Alice"
-printEGLISEprint(person.get("age"))        # 25
+print(person.get("age"))    # 25
 print(person.get("salary", 0))  # 0 (default)</code></pre>
             </section>
 
@@ -1155,6 +1388,10 @@ print(person.get("salary", 0))  # 0 (default)</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Dictionaries</span>
                 <h2>Dictionary Methods</h2>
+                <div class="explanation">
+                    <strong>📖 Safe Access:</strong>
+                    <p>Use <code>get()</code> instead of bracket notation when you're not sure if a key exists - it returns <code>None</code> (or a default) instead of crashing. <code>keys()</code>, <code>values()</code>, and <code>items()</code> are essential for iteration.</p>
+                </div>
                 <pre><code class="language-python">person = {"name": "Alice", "age": 25}
 
 # keys(), values(), items()
@@ -1173,6 +1410,10 @@ name = person.pop("name")</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Collections</span>
                 <h2>Iterating Over Collections</h2>
+                <div class="explanation">
+                    <strong>📖 For Loop Patterns:</strong>
+                    <p>Lists iterate over values. Dictionaries iterate over keys by default; use <code>.items()</code> for key-value pairs. Sets iterate in arbitrary order (no guaranteed order). The <code>for</code> loop is the standard way to process collections.</p>
+                </div>
                 <pre><code class="language-python"># List iteration
 fruits = ["apple", "banana", "cherry"]
 for fruit in fruits:
@@ -1192,6 +1433,10 @@ for item in {1, 2, 3}:
             <section class="slide-concept">
                 <span class="badge badge-concept">Collections</span>
                 <h2>Membership Testing</h2>
+                <div class="explanation">
+                    <strong>📖 Performance Note:</strong>
+                    <p>Membership testing (<code>in</code>) is O(1) for sets and dictionaries (very fast), but O(n) for lists and tuples (slower for large collections). For dictionaries, <code>in</code> checks keys, not values.</p>
+                </div>
                 <pre><code class="language-python"># in operator
 fruits = ["apple", "banana"]
 print("apple" in fruits)    # True
@@ -1227,6 +1472,10 @@ print(3 in {1, 2, 3})       # True</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 4</span>
                 <h2>Control Flow</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Control flow determines the order in which code executes. Without it, programs would just run top-to-bottom with no decisions or repetition. This module covers conditionals (if/elif/else) and loops (for/while).</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -1242,6 +1491,10 @@ print(3 in {1, 2, 3})       # True</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Control Flow</span>
                 <h2>If Statement</h2>
+                <div class="explanation">
+                    <strong>📖 Decision Making:</strong>
+                    <p>The <code>if</code> statement is the most basic form of control flow. The indented code block only runs if the condition evaluates to <code>True</code>. The <code>else</code> clause handles the False case.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Executes code only if a condition is True.</p>
                 </div>
@@ -1261,6 +1514,10 @@ else:
             <section class="slide-concept">
                 <span class="badge badge-concept">Control Flow</span>
                 <h2>Elif Statement</h2>
+                <div class="explanation">
+                    <strong>📖 Multiple Conditions:</strong>
+                    <p><code>elif</code> (else if) lets you check multiple conditions in sequence. Only the first True condition's block executes. The final <code>else</code> is optional and catches everything that didn't match.</p>
+                </div>
                 <pre><code class="language-python">score = 85
 
 if score >= 90:
@@ -1281,6 +1538,10 @@ print(f"Grade: {grade}")</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Control Flow</span>
                 <h2>Nested Conditions</h2>
+                <div class="explanation">
+                    <strong>📖 When to Nest:</strong>
+                    <p>Nested conditions check sub-conditions within a condition. While powerful, deep nesting can make code hard to read. Consider combining conditions with <code>and</code>/<code>or</code> or using early returns in functions instead.</p>
+                </div>
                 <pre><code class="language-python">age = 20
 has_id = True
 
@@ -1297,6 +1558,10 @@ else:
             <section class="slide-concept">
                 <span class="badge badge-concept">Control Flow</span>
                 <h2>Match Case (Python 3.10+)</h2>
+                <div class="explanation">
+                    <strong>📖 Pattern Matching:</strong>
+                    <p><code>match-case</code> is Python's version of switch-case statements. It's more powerful than if-elif chains for matching specific values or patterns. The <code>_</code> case is the default (wildcard) that matches anything.</p>
+                </div>
                 <pre><code class="language-python">day = "Monday"
 
 match day:
@@ -1314,6 +1579,10 @@ match day:
             <section class="slide-concept">
                 <span class="badge badge-concept">Loops</span>
                 <h2>For Loop</h2>
+                <div class="explanation">
+                    <strong>📖 Iteration:</strong>
+                    <p>Python's <code>for</code> loop iterates over any iterable (list, string, tuple, set, dict, etc.). Unlike other languages, Python's for loop works like a "for each" - it directly gives you each item, not an index.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Iterates over a sequence of items.</p>
                 </div>
@@ -1331,6 +1600,10 @@ for char in "Hello":
             <section class="slide-concept">
                 <span class="badge badge-concept">Loops</span>
                 <h2>While Loop</h2>
+                <div class="explanation">
+                    <strong>📖 Infinite Loop Warning:</strong>
+                    <p>A <code>while</code> loop runs as long as its condition is True. Always ensure the condition will eventually become False, or you'll create an infinite loop. Use <code>Ctrl+C</code> to stop a runaway program.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Repeats while a condition is True.</p>
                 </div>
@@ -1352,6 +1625,10 @@ print("Access granted!")</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Loops</span>
                 <h2>Nested Loops</h2>
+                <div class="explanation">
+                    <strong>📖 Performance Note:</strong>
+                    <p>Nested loops multiply iterations: a loop of 3 inside a loop of 3 runs 9 times total. Be careful with large ranges - nested loops can quickly become slow. This is O(n²) complexity.</p>
+                </div>
                 <pre><code class="language-python"># Multiplication table
 for i in range(1, 4):
     for j in range(1, 4):
@@ -1369,6 +1646,10 @@ for i in range(1, 4):
             <section class="slide-concept">
                 <span class="badge badge-concept">Control</span>
                 <h2>Break Statement</h2>
+                <div class="explanation">
+                    <strong>📖 Early Exit:</strong>
+                    <p><code>break</code> immediately exits the innermost loop. It's commonly used when you've found what you're looking for and don't need to continue iterating. This can significantly improve performance.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Exits the loop immediately.</p>
                 </div>
@@ -1391,6 +1672,10 @@ for fruit in fruits:
             <section class="slide-concept">
                 <span class="badge badge-concept">Control</span>
                 <h2>Continue Statement</h2>
+                <div class="explanation">
+                    <strong>📖 Skip and Continue:</strong>
+                    <p><code>continue</code> skips the rest of the current iteration and moves to the next one. It's useful for filtering - skip items that don't meet certain criteria without exiting the loop entirely.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Skips the current iteration and continues with the next.</p>
                 </div>
@@ -1412,6 +1697,10 @@ for name in names:
             <section class="slide-concept">
                 <span class="badge badge-concept">Control</span>
                 <h2>Pass Statement</h2>
+                <div class="explanation">
+                    <strong>📖 Placeholder:</strong>
+                    <p><code>pass</code> is a null operation - it does nothing. It's used as a placeholder where syntax requires a statement but you haven't implemented the logic yet. Think of it as a "TODO" marker.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Does nothing, used as a placeholder.</p>
                 </div>
@@ -1432,6 +1721,10 @@ def my_function():
             <section class="slide-concept">
                 <span class="badge badge-concept">Function</span>
                 <h2>Range Function</h2>
+                <div class="explanation">
+                    <strong>📖 Range Basics:</strong>
+                    <p><code>range()</code> generates a sequence of numbers. It's memory-efficient because it generates numbers on-the-fly rather than storing them all. The stop value is exclusive - <code>range(5)</code> gives 0-4, not 0-5.</p>
+                </div>
                 <pre><code class="language-python"># range(stop)
 for i in range(5):
     print(i)  # 0, 1, 2, 3, 4
@@ -1469,6 +1762,10 @@ numbers = list(range(5))  # [0, 1, 2, 3, 4]</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 5</span>
                 <h2>Functions</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Functions are the building blocks of any non-trivial program. They let you organize code into reusable pieces, avoid repetition, and make programs easier to understand and maintain.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -1484,6 +1781,10 @@ numbers = list(range(5))  # [0, 1, 2, 3, 4]</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Functions</span>
                 <h2>Creating Functions</h2>
+                <div class="explanation">
+                    <strong>📖 DRY Principle:</strong>
+                    <p>Functions embody the DRY principle: Don't Repeat Yourself. Instead of writing the same code multiple times, write a function once and call it whenever needed. This makes code easier to fix and update.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> A function is a reusable block of code that performs a specific task.</p>
                 </div>
@@ -1505,6 +1806,10 @@ greet_user("Alice")  # Output: Hello, Alice!</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Functions</span>
                 <h2>Parameters and Arguments</h2>
+                <div class="explanation">
+                    <strong>📖 Parameters vs Arguments:</strong>
+                    <p>Parameters are the variables in the function definition. Arguments are the actual values passed when calling the function. Default parameters let you specify fallback values, making the argument optional.</p>
+                </div>
                 <pre><code class="language-python"># Positional arguments
 def add(a, b):
     return a + b
@@ -1529,6 +1834,10 @@ person_info(age=25, city="NYC", name="Alice")</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Functions</span>
                 <h2>Return Values</h2>
+                <div class="explanation">
+                    <strong>📖 Return vs Print:</strong>
+                    <p><code>return</code> sends a value back to the caller for further use. <code>print()</code> just displays it. Functions without a <code>return</code> statement implicitly return <code>None</code>. Multiple return values come back as a tuple.</p>
+                </div>
                 <pre><code class="language-python"># Single return value
 def square(x):
     return x ** 2
@@ -1554,6 +1863,10 @@ result = say_hello()  # result is None</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Functions</span>
                 <h2>Variable Scope</h2>
+                <div class="explanation">
+                    <strong>📖 LEGB Rule:</strong>
+                    <p>Python follows the LEGB rule for variable lookup: Local, Enclosing, Global, Built-in. Variables defined inside a function are local and can't be accessed outside. Use <code>global</code> keyword to modify global variables.</p>
+                </div>
                 <pre><code class="language-python"># Global variable
 name = "Alice"
 
@@ -1577,6 +1890,10 @@ def increment():
             <section class="slide-concept">
                 <span class="badge badge-concept">Functions</span>
                 <h2>Lambda Functions</h2>
+                <div class="explanation">
+                    <strong>📖 Anonymous Functions:</strong>
+                    <p>Lambda functions are small, one-expression functions without a name. They're commonly used with <code>map()</code>, <code>filter()</code>, and <code>sorted()</code> for short, throwaway operations. Keep them simple - for complex logic, use a regular function.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Small anonymous functions defined with lambda keyword.</p>
                 </div>
@@ -1598,6 +1915,10 @@ print(squared)  # [1, 4, 9, 16]</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Functions</span>
                 <h2>Built-in Functions</h2>
+                <div class="explanation">
+                    <strong>📖 Batteries Included:</strong>
+                    <p>Python comes with many built-in functions that are always available. Knowing these saves you from reinventing the wheel. <code>len()</code>, <code>type()</code>, <code>sum()</code>, <code>min()</code>, and <code>max()</code> are among the most used.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Common Functions</h4>
@@ -1643,6 +1964,10 @@ print(squared)  # [1, 4, 9, 16]</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 6</span>
                 <h2>Modules and Packages</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Modules let you organize code across multiple files. Instead of one giant file, you can split related functions and classes into separate modules. Packages are directories of modules that form a hierarchy.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -1658,6 +1983,10 @@ print(squared)  # [1, 4, 9, 16]</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Modules</span>
                 <h2>Creating Modules</h2>
+                <div class="explanation">
+                    <strong>📖 Any .py File:</strong>
+                    <p>Any Python file (.py) is a module. Simply save your functions and classes in a file, and you can import them in other files. This is the foundation of code organization in Python.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> A module is a Python file containing functions, classes, and variables.</p>
                 </div>
@@ -1676,6 +2005,10 @@ class Circle:
             <section class="slide-concept">
                 <span class="badge badge-concept">Modules</span>
                 <h2>Importing Modules</h2>
+                <div class="explanation">
+                    <strong>📖 Import Best Practices:</strong>
+                    <p>Import only what you need. <code>from module import *</code> is discouraged because it pollutes the namespace. Use aliases (<code>import numpy as np</code>) for commonly used libraries to save typing.</p>
+                </div>
                 <pre><code class="language-python"># Import entire module
 import math
 print(math.pi)
@@ -1697,6 +2030,10 @@ from math import *</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module</span>
                 <h2>Math Module</h2>
+                <div class="explanation">
+                    <strong>📖 Beyond Basic Math:</strong>
+                    <p>The <code>math</code> module provides mathematical functions and constants beyond basic operators. It includes trigonometry, logarithms, factorials, and constants like pi and e.</p>
+                </div>
                 <pre><code class="language-python">import math
 
 # Constants
@@ -1715,6 +2052,10 @@ print(math.factorial(5)) # 120</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module</span>
                 <h2>Random Module</h2>
+                <div class="explanation">
+                    <strong>📖 Pseudo-Random:</strong>
+                    <p>The <code>random</code> module generates pseudo-random numbers (deterministic, not truly random). For security-sensitive applications (passwords, tokens), use the <code>secrets</code> module instead.</p>
+                </div>
                 <pre><code class="language-python">import random
 
 # Random float between 0 and 1
@@ -1738,6 +2079,10 @@ print(random.sample(range(100), 5))</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module</span>
                 <h2>Datetime Module</h2>
+                <div class="explanation">
+                    <strong>📖 Date Handling:</strong>
+                    <p>The <code>datetime</code> module handles dates, times, and time intervals. <code>strftime()</code> formats dates as strings, <code>strptime()</code> parses strings into dates. <code>timedelta</code> represents time differences.</p>
+                </div>
                 <pre><code class="language-python">from datetime import datetime, timedelta
 
 # Current date and time
@@ -1776,6 +2121,10 @@ print(future)</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 7</span>
                 <h2>Exception Handling</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Errors are inevitable in programming. Exception handling lets you gracefully handle errors instead of crashing. This is what separates robust, production-ready code from fragile scripts.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -1791,6 +2140,10 @@ print(future)</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Errors</span>
                 <h2>Types of Errors</h2>
+                <div class="explanation">
+                    <strong>📖 Syntax vs Runtime:</strong>
+                    <p>Syntax errors are caught before the program runs (like missing colons). Runtime errors (exceptions) occur during execution (like dividing by zero). Only runtime errors can be handled with try-except.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Syntax Errors</h4>
@@ -1820,6 +2173,10 @@ print(my_list[5])</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Exception</span>
                 <h2>Try and Except</h2>
+                <div class="explanation">
+                    <strong>📖 Specific vs General:</strong>
+                    <p>Catch specific exceptions first, then general ones. A bare <code>except:</code> catches everything (including system exits) and is usually a bad idea. Always specify which exception types you expect.</p>
+                </div>
                 <pre><code class="language-python">try:
     number = int(input("Enter a number: "))
     result = 100 / number
@@ -1836,6 +2193,10 @@ except Exception as e:
             <section class="slide-concept">
                 <span class="badge badge-concept">Exception</span>
                 <h2>Else and Finally</h2>
+                <div class="explanation">
+                    <strong>📖 Guaranteed Cleanup:</strong>
+                    <p><code>else</code> runs only if no exception occurred. <code>finally</code> ALWAYS runs, whether an exception occurred or not. Use <code>finally</code> for cleanup operations like closing files or database connections.</p>
+                </div>
                 <pre><code class="language-python">try:
     file = open("data.txt", "r")
     content = file.read()
@@ -1872,6 +2233,10 @@ finally:
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 8</span>
                 <h2>File Handling</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>File handling lets your programs read from and write to files on disk. This is essential for data persistence - without it, all your program's data disappears when it ends.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -1887,6 +2252,10 @@ finally:
             <section class="slide-concept">
                 <span class="badge badge-concept">Files</span>
                 <h2>Opening Files</h2>
+                <div class="explanation">
+                    <strong>📖 File Modes:</strong>
+                    <p><code>'r'</code> = read, <code>'w'</code> = write (overwrites!), <code>'a'</code> = append, <code>'x'</code> = create (fails if exists), <code>'b'</code> = binary. Always use context managers (<code>with</code>) to ensure files are properly closed.</p>
+                </div>
                 <pre><code class="language-python"># Open file for reading
 file = open("data.txt", "r")
 
@@ -1909,6 +2278,10 @@ with open("data.txt", "r") as file:
             <section class="slide-concept">
                 <span class="badge badge-concept">Files</span>
                 <h2>Reading Files</h2>
+                <div class="explanation">
+                    <strong>📖 Reading Methods:</strong>
+                    <p><code>read()</code> reads the entire file as one string. <code>readline()</code> reads one line at a time. <code>readlines()</code> returns a list of all lines. For large files, iterate line by line to avoid memory issues.</p>
+                </div>
                 <pre><code class="language-python">with open("data.txt", "r") as file:
     # Read entire file
     content = file.read()
@@ -1926,8 +2299,12 @@ with open("data.txt", "r") as file:
 
             <!-- Slide 87: Writing Files -->
             <section class="slide-concept">
-                <span classules class="badge badge-concept">Files</span>
+                <span class="badge badge-concept">Files</span>
                 <h2>Writing Files</h2>
+                <div class="explanation">
+                    <strong>📖 Write vs Append:</strong>
+                    <p><code>'w'</code> mode overwrites the entire file if it exists. <code>'a'</code> mode adds content to the end without deleting existing content. Always be careful with <code>'w'</code> mode - it will erase your data!</p>
+                </div>
                 <pre><code class="language-python"># Write (overwrites existing)
 with open("output.txt", "w") as file:
     file.write("Hello, World!\n")
@@ -1947,6 +2324,10 @@ with open("output.txt", "w") as file:
             <section class="slide-concept">
                 <span class="badge badge-concept">Files</span>
                 <h2>Context Manager (with)</h2>
+                <div class="explanation">
+                    <strong>📖 Why 'with'?:</strong>
+                    <p>The <code>with</code> statement guarantees the file is closed even if an exception occurs. Without it, you'd need a try-finally block. This pattern is so important it has its own protocol (<code>__enter__</code> and <code>__exit__</code>).</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Automatically handles file closing, even if errors occur.</p>
                 </div>
@@ -1984,6 +2365,10 @@ with open("data.txt", "r") as file:
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 9</span>
                 <h2>Introduction to OOP</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Object-Oriented Programming (OOP) is a paradigm that organizes code around "objects" rather than functions. Objects bundle data (attributes) and behavior (methods) together, making complex programs easier to manage.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -1999,6 +2384,10 @@ with open("data.txt", "r") as file:
             <section class="slide-concept">
                 <span class="badge badge-concept">OOP</span>
                 <h2>Classes and Objects</h2>
+                <div class="explanation">
+                    <strong>📖 Blueprint Analogy:</strong>
+                    <p>A class is like a blueprint for a house. The blueprint describes what the house will look like, but you can't live in a blueprint. An object is the actual house built from that blueprint - you can have many houses from one blueprint.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Class:</strong> Blueprint for creating objects.<br>
                     <strong>Object:</strong> Instance of a class.</p>
@@ -2018,6 +2407,10 @@ print(type(my_dog))  # <class '__main__.Dog'></code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">OOP</span>
                 <h2>Attributes and Methods</h2>
+                <div class="explanation">
+                    <strong>📖 Self Parameter:</strong>
+                    <p><code>self</code> refers to the specific instance of the class. It's how methods access the object's own data. Python passes <code>self</code> automatically - you don't include it when calling the method, only when defining it.</p>
+                </div>
                 <pre><code class="language-python">class Dog:
     # Class attribute
     species = "Canis familiaris"
@@ -2040,6 +2433,10 @@ print(my_dog.bark()) # Buddy says woof!</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">OOP</span>
                 <h2>Constructors (__init__)</h2>
+                <div class="explanation">
+                    <strong>📖 Initialization:</strong>
+                    <p><code>__init__</code> is called automatically when you create a new object. It's where you set up the object's initial state. The double underscores (dunder) indicate it's a special Python method.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Special method called when creating an object.</p>
                 </div>
@@ -2076,6 +2473,10 @@ print(person.email)  # alice@example.com</code></pre>
             <section class="slide-example">
                 <span class="badge badge-example">Project</span>
                 <h2>Project: Calculator</h2>
+                <div class="explanation">
+                    <strong>📖 Project Overview:</strong>
+                    <p>Build a simple calculator that takes two numbers and an operator from the user, then performs the calculation. This project reinforces variables, input, type casting, and conditional statements.</p>
+                </div>
                 <div class="box box-green" style="margin-top: 20px;">
                     <h4>Problem Statement</h4>
                     <p>Create a calculator that performs basic arithmetic operations.</p>
@@ -2105,6 +2506,10 @@ print(person.email)  # alice@example.com</code></pre>
             <section class="slide-example">
                 <span class="badge badge-example">Project</span>
                 <h2>Project: Number Guessing Game</h2>
+                <div class="explanation">
+                    <strong>📖 Project Overview:</strong>
+                    <p>Create a game where the computer picks a random number and the player tries to guess it. This project uses the random module, while loops, conditionals, and user input.</p>
+                </div>
                 <pre><code class="language-python">import random
 
 def guessing_game():
@@ -2129,6 +2534,10 @@ def guessing_game():
             <section class="slide-example">
                 <span class="badge badge-example">Project</span>
                 <h2>Project: Password Generator</h2>
+                <div class="explanation">
+                    <strong>📖 Project Overview:</strong>
+                    <p>Generate secure random passwords using letters, digits, and special characters. This project uses the random and string modules, plus list comprehensions for concise code.</p>
+                </div>
                 <pre><code class="language-python">import random
 import string
 
@@ -2146,6 +2555,10 @@ print(f"Generated password: {new_password}")</code></pre>
             <section class="slide-example">
                 <span class="badge badge-example">Project</span>
                 <h2>Project: To-Do List</h2>
+                <div class="explanation">
+                    <strong>📖 Project Overview:</strong>
+                    <p>Build a task management system using OOP. This project introduces classes, methods, and list manipulation in a practical context.</p>
+                </div>
                 <pre><code class="language-python">class TodoList:
     def __init__(self):
         self.tasks = []
@@ -2171,6 +2584,10 @@ todo.show_tasks()</code></pre>
             <section class="slide-example">
                 <span class="badge badge-example">Project</span>
                 <h2>Project: Student Management</h2>
+                <div class="explanation">
+                    <strong>📖 Project Overview:</strong>
+                    <p>Create a student management system with two classes working together. This demonstrates class composition - a School contains multiple Student objects.</p>
+                </div>
                 <pre><code class="language-python">class Student:
     def __init__(self, name, age, grade):
         self.name = name
@@ -2193,6 +2610,10 @@ class School:
             <section class="slide-title">
                 <h1>Part 2: Advanced Python</h1>
                 <p style="font-size: 1.2em; margin-top: 30px;">Data Analysis and Real-World Applications</p>
+                <div class="explanation" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3);">
+                    <strong style="color: white;">📖 What's Next:</strong>
+                    <p style="color: rgba(255,255,255,0.9);">Part 2 covers advanced Python features (recursion, comprehensions, generators), data science libraries (NumPy, Pandas), data visualization (Matplotlib), and real-world projects.</p>
+                </div>
             </section>
 
             <!-- MODULE 10: Advanced Functions -->
@@ -2200,6 +2621,10 @@ class School:
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 10</span>
                 <h2>Advanced Functions and Concepts</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>This module covers powerful Python features that make your code more elegant and efficient. Recursion solves problems by breaking them down, comprehensions create collections concisely, and generators handle large data efficiently.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -2215,6 +2640,10 @@ class School:
             <section class="slide-concept">
                 <span class="badge badge-concept">Advanced</span>
                 <h2>Recursion</h2>
+                <div class="explanation">
+                    <strong>📖 Base Case is Critical:</strong>
+                    <p>Every recursive function needs a base case (stopping condition) to prevent infinite recursion. Without it, you'll hit Python's recursion limit (default 1000) and get a RecursionError.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> A function that calls itself to solve a problem.</p>
                 </div>
@@ -2224,7 +2653,7 @@ def factorial(n):
         return 1
     return n * factorial(n - 1)
 
-print(f factorial(5))  # 120
+print(factorial(5))  # 120
 
 # Fibonacci
 def fibonacci(n):
@@ -2239,6 +2668,10 @@ print(fibonacci(7))  # 13</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Advanced</span>
                 <h2>List Comprehensions</h2>
+                <div class="explanation">
+                    <strong>📖 Concise and Fast:</strong>
+                    <p>List comprehensions are a concise way to create lists. They're often faster than equivalent for-loops because the iteration happens at C speed inside Python's interpreter. Use them for simple transformations and filtering.</p>
+                </div>
                 <pre><code class="language-python"># Basic comprehension
 squares = [x**2 for x in range(10)]
 # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
@@ -2256,6 +2689,10 @@ matrix = [[i*j for j in range(3)] for i in range(3)]
             <section class="slide-concept">
                 <span class="badge badge-concept">Advanced</span>
                 <h2>Dictionary Comprehensions</h2>
+                <div class="explanation">
+                    <strong>📖 Same Pattern:</strong>
+                    <p>Dictionary comprehensions follow the same pattern as list comprehensions but produce dictionaries. They're great for creating lookup tables or transforming existing dictionaries.</p>
+                </div>
                 <pre><code class="language-python"># Basic comprehension
 squares = {x: x**2 for x in range(5)}
 # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
@@ -2271,6 +2708,10 @@ person_dict = {name: age for name, age in zip(names, ages)}
             <section class="slide-concept">
                 <span class="badge badge-concept">Advanced</span>
                 <h2>Iterators</h2>
+                <div class="explanation">
+                    <strong>📖 Iterator Protocol:</strong>
+                    <p>An iterator is an object that implements <code>__iter__()</code> and <code>__next__()</code>. It produces values one at a time and raises <code>StopIteration</code> when exhausted. This is the foundation of Python's for-loop.</p>
+                </div>
                 <pre><code class="language-python"># Using iter() and next()
 my_list = [1, 2, 3]
 iterator = iter(my_list)
@@ -2299,6 +2740,10 @@ class CountDown:
             <section class="slide-concept">
                 <span class="badge badge-concept">Advanced</span>
                 <h2>Generators</h2>
+                <div class="explanation">
+                    <strong>📖 Memory Efficiency:</strong>
+                    <p>Generators produce values lazily (on demand) using <code>yield</code> instead of <code>return</code>. They don't store all values in memory, making them ideal for processing large datasets or infinite sequences.</p>
+                </div>
                 <pre><code class="language-python"># Generator function
 def count_up_to(n):
     count = 1
@@ -2317,23 +2762,31 @@ squares = (x**2 for x in range(1000000))
 
             <!-- Slide 107: Enumerate and Zip -->
             <section class="slide-concept">
-                <span class="badge badge-concept">Advanced unto 20px;">
-                    <h4>Enumerate</h4>
-                    <pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
+                <span class="badge badge-concept">Advanced</span>
+                <h2>Enumerate and Zip</h2>
+                <div class="explanation">
+                    <strong>📖 Index + Value:</strong>
+                    <p><code>enumerate()</code> gives you both the index and value while iterating. <code>zip()</code> combines multiple iterables element-by-element. Both are more Pythonic than using a counter variable.</p>
+                </div>
+                <div class="two-col" style="margin-top: 20px;">
+                    <div>
+                        <h4>Enumerate</h4>
+                        <pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
 for index, fruit in enumerate(fruits):
     print(f"{index}: {fruit}")
 # 0: apple
 # 1: banana
 # 2: cherry</code></pre>
-                </div>
-                <div>
-                    <h4>Zip</h4>
-                    <pre><code class="language-python">names = ["Alice", "Bob"]
+                    </div>
+                    <div>
+                        <h4>Zip</h4>
+                        <pre><code class="language-python">names = ["Alice", "Bob"]
 ages = [25, 30]
 for name, age in zip(names, ages):
     print(f"{name} is {age}")
 # Alice is 25
 # Bob is 30</code></pre>
+                    </div>
                 </div>
             </section>
 
@@ -2341,6 +2794,10 @@ for name, age in zip(names, ages):
             <section class="slide-concept">
                 <span class="badge badge-concept">Advanced</span>
                 <h2>*args and **kwargs</h2>
+                <div class="explanation">
+                    <strong>📖 Flexible Functions:</strong>
+                    <p><code>*args</code> collects extra positional arguments into a tuple. <code>**kwargs</code> collects extra keyword arguments into a dictionary. The names <code>args</code> and <code>kwargs</code> are convention - the <code>*</code> and <code>**</code> are what matter.</p>
+                </div>
                 <pre><code class="language-python"># *args - variable positional arguments
 def sum_all(*args):
     return sum(args)
@@ -2350,7 +2807,20 @@ print(sum_all(1, 2, 3, 4))  # 10
 # **kwargs - variable keyword arguments
 def print_info(**kwargs):
     for key, value in kwargs.items():
-        print(f"{lez</li>
+        print(f"{key}: {value}")
+
+print_info(name="Alice", age=25, city="NYC")</code></pre>
+            </section>
+
+            <!-- Slide 109: Module 10 Summary -->
+            <section>
+                <span class="badge badge-concept">Summary</span>
+                <h2>Module 10 Summary</h2>
+                <div class="box box-blue" style="margin-top: 20px;">
+                    <h4>Key Takeaways</h4>
+                    <ul>
+                        <li>Recursion solves problems by self-calling</li>
+                        <li>Comprehensions create collections concisely</li>
                         <li>Generators are memory efficient</li>
                         <li>Enumerate adds index to iteration</li>
                         <li>Zip combines multiple iterables</li>
@@ -2364,6 +2834,10 @@ def print_info(**kwargs):
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 11</span>
                 <h2>Advanced Modules and Development Tools</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Learn professional Python development practices: organizing code into packages, managing dependencies with PIP, and isolating project environments with virtual environments.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -2378,6 +2852,10 @@ def print_info(**kwargs):
             <section class="slide-concept">
                 <span class="badge badge-concept">Advanced</span>
                 <h2>Packages</h2>
+                <div class="explanation">
+                    <strong>📖 __init__.py:</strong>
+                    <p>A package is a directory with an <code>__init__.py</code> file (can be empty). This file tells Python the directory is a package. Packages can contain sub-packages, creating a hierarchical namespace.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> A package is a directory of Python modules.</p>
                 </div>
@@ -2396,6 +2874,10 @@ from mypackage.module1 import my_function</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Advanced</span>
                 <h2>PIP Package Manager</h2>
+                <div class="explanation">
+                    <strong>📖 Python's App Store:</strong>
+                    <p>PIP (Pip Installs Packages) is Python's package manager. It downloads and installs packages from the Python Package Index (PyPI), which hosts over 400,000 packages. Think of it as an app store for Python code.</p>
+                </div>
                 <pre><code class="language-python"># Install package
 # pip install package_name
 
@@ -2416,6 +2898,10 @@ from mypackage.module1 import my_function</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Advanced</span>
                 <h2>Virtual Environments</h2>
+                <div class="explanation">
+                    <strong>📖 Why Virtual Environments?:</strong>
+                    <p>Different projects need different package versions. Virtual environments create isolated Python environments for each project, preventing version conflicts. Always use a virtual environment for new projects.</p>
+                </div>
                 <pre><code class="language-python"># Create virtual environment
 # python -m venv myenv
 
@@ -2448,6 +2934,10 @@ from mypackage.module1 import my_function</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 12</span>
                 <h2>Advanced Exception Handling</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Go beyond basic try-except. Learn to raise your own exceptions, create custom exception classes, and re-raise exceptions after logging or partial handling.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -2461,11 +2951,15 @@ from mypackage.module1 import my_function</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Advanced</span>
                 <h2>Raise Statement</h2>
+                <div class="explanation">
+                    <strong>📖 When to Raise:</strong>
+                    <p>Use <code>raise</code> when your code detects an invalid state that it can't handle. This lets the calling code decide how to deal with the problem. A bare <code>raise</code> re-raises the current exception.</p>
+                </div>
                 <pre><code class="language-python"># Raise built-in exception
-def divide(a1, a2):
-    if a2 == 0:
+def divide(a, b):
+    if b == 0:
         raise ZeroDivisionError("Cannot divide by zero")
-    return a1 / a2
+    return a / b
 
 # Raise with message
 if not isinstance(age, int):
@@ -2483,6 +2977,10 @@ except Exception:
             <section class="slide-concept">
                 <span class="badge badge-concept">Advanced</span>
                 <h2>Custom Exceptions</h2>
+                <div class="explanation">
+                    <strong>📖 Domain-Specific Errors:</strong>
+                    <p>Custom exceptions make your code more expressive. Instead of a generic ValueError, you can raise a ValidationError that clearly communicates what went wrong. Always inherit from <code>Exception</code>.</p>
+                </div>
                 <pre><code class="language-python">class ValidationError(Exception):
     def __init__(self, field, message):
         self.field = field
@@ -2517,6 +3015,10 @@ def validate_age(age):
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 13</span>
                 <h2>Advanced File Handling</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Real-world data comes in structured formats like CSV and JSON. This module teaches you how to read, write, and process these common data formats using Python's built-in modules.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -2530,6 +3032,10 @@ def validate_age(age):
             <section class="slide-concept">
                 <span class="badge badge-concept">Files</span>
                 <h2>CSV Files</h2>
+                <div class="explanation">
+                    <strong>📖 CSV = Comma-Separated Values:</strong>
+                    <p>CSV is the most common format for tabular data. Python's <code>csv</code> module handles parsing correctly (including quoted fields with commas). <code>DictReader</code> reads rows as dictionaries for easier access.</p>
+                </div>
                 <pre><code class="language-python">import csv
 
 # Reading CSV
@@ -2555,6 +3061,10 @@ with open('data.csv', 'r') as file:
             <section class="slide-concept">
                 <span class="badge badge-concept">Files</span>
                 <h2>JSON Files</h2>
+                <div class="explanation">
+                    <strong>📖 JSON = JavaScript Object Notation:</strong>
+                    <p>JSON is the universal data exchange format for web APIs. Python's <code>json</code> module converts between JSON strings and Python dictionaries. Use <code>indent</code> parameter for human-readable output.</p>
+                </div>
                 <pre><code class="language-python">import json
 
 # Writing JSON
@@ -2592,6 +3102,10 @@ with open('data.json', 'r') as file:
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 14</span>
                 <h2>Advanced OOP</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Master the four pillars of OOP: Encapsulation (hiding data), Inheritance (reusing code), Polymorphism (same interface, different behavior), and Abstraction (hiding complexity).</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -2604,7 +3118,11 @@ with open('data.json', 'r') as file:
             <!-- Slide 124: Encapsulation -->
             <section class="slide-concept">
                 <span class="badge badge-concept">OOP</span>
-                <h2>Encapsulation lifecycle</h2>
+                <h2>Encapsulation</h2>
+                <div class="explanation">
+                    <strong>📖 Access Control:</strong>
+                    <p>Python uses naming conventions: <code>_protected</code> (single underscore) means "use at your own risk," <code>__private</code> (double underscore) triggers name mangling. Python trusts developers - nothing is truly private.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <p><strong>Definition:</strong> Bundling data and methods that work on that data.</p>
                 </div>
@@ -2625,6 +3143,10 @@ with open('data.json', 'r') as file:
             <section class="slide-concept">
                 <span class="badge badge-concept">OOP</span>
                 <h2>Inheritance</h2>
+                <div class="explanation">
+                    <strong>📖 IS-A Relationship:</strong>
+                    <p>Inheritance models "IS-A" relationships. A Dog IS an Animal, so Dog inherits from Animal. The child class can override methods to provide specialized behavior while reusing common functionality.</p>
+                </div>
                 <pre><code class="language-python">class Animal:
     def __init__(self, name):
         self.name = name
@@ -2648,6 +3170,10 @@ print(dog.speak())  # Buddy says woof!</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">OOP</span>
                 <h2>Polymorphism</h2>
+                <div class="explanation">
+                    <strong>📖 Same Interface, Different Behavior:</strong>
+                    <p>Polymorphism lets different classes implement the same method name in their own way. You can write code that works with any object that has a certain method, regardless of its specific class.</p>
+                </div>
                 <pre><code class="language-python"># Same interface, different behavior
 class Shape:
     def area(self):
@@ -2658,7 +3184,7 @@ class Circle(Shape):
         self.radius = radius
     
     def area(self):
-        return  * self.radius ** 2
+        return 3.14159 * self.radius ** 2
 
 class Rectangle(Shape):
     def __init__(self, width, height):
@@ -2673,6 +3199,10 @@ class Rectangle(Shape):
             <section class="slide-concept">
                 <span class="badge badge-concept">OOP</span>
                 <h2>Abstraction</h2>
+                <div class="explanation">
+                    <strong>📖 Abstract Base Classes:</strong>
+                    <p>ABCs define a contract - any subclass MUST implement the abstract methods. This ensures consistency across different implementations. You can't instantiate an abstract class directly.</p>
+                </div>
                 <pre><code class="language-python">from abc import ABC, abstractmethod
 
 class Vehicle(ABC):
@@ -2696,6 +3226,10 @@ class Car(Vehicle):
             <section class="slide-concept">
                 <span class="badge badge-concept">OOP</span>
                 <h2>Class and Static Methods</h2>
+                <div class="explanation">
+                    <strong>📖 Method Types:</strong>
+                    <p><code>@classmethod</code> receives the class as first argument (<code>cls</code>) - used for factory methods. <code>@staticmethod</code> receives neither instance nor class - used for utility functions that belong to the class namespace.</p>
+                </div>
                 <pre><code class="language-python">class Person:
     count = 0
     
@@ -2735,6 +3269,10 @@ print(Person.is_adult(20))</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 15</span>
                 <h2>NumPy</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>NumPy (Numerical Python) is the foundation of scientific computing in Python. It provides fast, efficient arrays and mathematical functions. NumPy arrays are up to 50x faster than Python lists for numerical operations.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -2749,6 +3287,10 @@ print(Person.is_adult(20))</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">NumPy</span>
                 <h2>Creating Arrays</h2>
+                <div class="explanation">
+                    <strong>📖 ndarray:</strong>
+                    <p>The core of NumPy is the ndarray (n-dimensional array). All elements must be the same type. NumPy provides convenience functions for creating arrays of zeros, ones, or evenly spaced values.</p>
+                </div>
                 <pre><code class="language-python">import numpy as np
 
 # From list
@@ -2768,6 +3310,10 @@ arr = np.linspace(0, 1, 5)    # 5 values from 0 to 1</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">NumPy</span>
                 <h2>Array Operations</h2>
+                <div class="explanation">
+                    <strong>📖 Vectorization:</strong>
+                    <p>NumPy operations are vectorized - they operate on entire arrays at once without Python loops. This is what makes NumPy fast. Operations are element-wise by default.</p>
+                </div>
                 <pre><code class="language-python">import numpy as np
 
 a = np.array([1, 2, 3])
@@ -2787,6 +3333,10 @@ print(np.exp(a))    # [2.718, 7.389, 20.086]</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">NumPy</span>
                 <h2>Array Indexing and Slicing</h2>
+                <div class="explanation">
+                    <strong>📖 Multi-dimensional Indexing:</strong>
+                    <p>NumPy uses comma-separated indices for each dimension: <code>arr[row, column]</code>. Slicing works per dimension. The colon <code>:</code> selects all elements along that axis.</p>
+                </div>
                 <pre><code class="language-python">import numpy as np
 
 arr = np.array([[1, 2, 3],
@@ -2821,6 +3371,10 @@ print(arr[:, 0])      # [1, 4, 7]</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 16</span>
                 <h2>Pandas</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Pandas is THE library for data manipulation in Python. It provides two main data structures: Series (1D) and DataFrame (2D). If NumPy is the engine, Pandas is the steering wheel for data analysis.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -2835,6 +3389,10 @@ print(arr[:, 0])      # [1, 4, 7]</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Pandas</span>
                 <h2>Series</h2>
+                <div class="explanation">
+                    <strong>📖 1D Labeled Array:</strong>
+                    <p>A Series is like a column in a spreadsheet - a one-dimensional array with labels (index). You can think of it as a dictionary where the keys are the index and the values are the data.</p>
+                </div>
                 <pre><code class="language-python">import pandas as pd
 
 # Create Series
@@ -2853,6 +3411,10 @@ s = pd.Series({'a': 1, 'b': 2, 'c': 3})</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Pandas</span>
                 <h2>DataFrames</h2>
+                <div class="explanation">
+                    <strong>📖 2D Labeled Structure:</strong>
+                    <p>A DataFrame is like a spreadsheet or SQL table - rows and columns with labels. It's the most commonly used Pandas structure. You can think of it as a dictionary of Series objects.</p>
+                </div>
                 <pre><code class="language-python">import pandas as pd
 
 # Create DataFrame
@@ -2874,6 +3436,10 @@ print(df[['Name', 'Age']])</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Pandas</span>
                 <h2>Reading and Writing CSV</h2>
+                <div class="explanation">
+                    <strong>📖 Data Exploration:</strong>
+                    <p><code>head()</code> and <code>tail()</code> preview data. <code>info()</code> shows data types and memory usage. <code>describe()</code> gives summary statistics. Always explore your data before analyzing it.</p>
+                </div>
                 <pre><code class="language-python">import pandas as pd
 
 # Read CSV
@@ -2893,6 +3459,10 @@ df.to_csv('output.csv', index=False)</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Pandas</span>
                 <h2>Data Cleaning</h2>
+                <div class="explanation">
+                    <strong>📖 Garbage In, Garbage Out:</strong>
+                    <p>Real-world data is messy - missing values, duplicates, inconsistent formats. Data cleaning is often 80% of a data analyst's work. Pandas provides powerful tools for handling these issues.</p>
+                </div>
                 <pre><code class="language-python"># Handle missing values
 print(df.isnull().sum())  # Count missing
 
@@ -2911,6 +3481,10 @@ df_unique = df.drop_duplicates()</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Pandas</span>
                 <h2>Data Analysis</h2>
+                <div class="explanation">
+                    <strong>📖 Split-Apply-Combine:</strong>
+                    <p><code>groupby()</code> is one of Pandas' most powerful features. It splits data into groups, applies a function to each group, and combines the results. This pattern is the foundation of data aggregation.</p>
+                </div>
                 <pre><code class="language-python"># Filtering
 df[df['Age'] > 25]
 
@@ -2933,7 +3507,7 @@ df.agg({'Age': ['mean', 'min', 'max']})</code></pre>
                     <ul>
                         <li>Series is 1D, DataFrame is 2D</li>
                         <li>Read CSV with read_csv()</li>
-                        <li>Cleanryn</li>
+                        <li>Clean data with dropna() and fillna()</li>
                         <li>Group by for aggregation</li>
                     </ul>
                 </div>
@@ -2944,6 +3518,10 @@ df.agg({'Age': ['mean', 'min', 'max']})</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 17</span>
                 <h2>Data Visualization with Matplotlib</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Matplotlib is Python's foundational plotting library. It can create publication-quality figures in various formats. A picture is worth a thousand rows of data - visualization helps you spot patterns instantly.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
@@ -2958,6 +3536,10 @@ df.agg({'Age': ['mean', 'min', 'max']})</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Matplotlib</span>
                 <h2>Line Charts</h2>
+                <div class="explanation">
+                    <strong>📖 Best for Trends:</strong>
+                    <p>Line charts are ideal for showing trends over time or continuous data. The <code>marker</code> parameter adds dots at data points. Always label your axes and add a title for clarity.</p>
+                </div>
                 <pre><code class="language-python">import matplotlib.pyplot as plt
 
 x = [1, 2, 3, 4, 5]
@@ -2975,6 +3557,10 @@ plt.show()</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Matplotlib</span>
                 <h2>Bar Charts</h2>
+                <div class="explanation">
+                    <strong>📖 Best for Comparisons:</strong>
+                    <p>Bar charts compare values across categories. Use different colors to make bars distinguishable. Horizontal bars (<code>plt.barh()</code>) are better when category labels are long.</p>
+                </div>
                 <pre><code class="language-python">import matplotlib.pyplot as plt
 
 fruits = ['Apple', 'Banana', 'Cherry']
@@ -2991,6 +3577,10 @@ plt.show()</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Matplotlib</span>
                 <h2>Pie Charts</h2>
+                <div class="explanation">
+                    <strong>📖 Best for Proportions:</strong>
+                    <p>Pie charts show parts of a whole. <code>autopct</code> adds percentage labels. Use pie charts sparingly - they're hard to read with many categories. Bar charts are often a better alternative.</p>
+                </div>
                 <pre><code class="language-python">import matplotlib.pyplot as plt
 
 sizes = [30, 20, 25, 25]
@@ -3005,6 +3595,10 @@ plt.show()</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Matplotlib</span>
                 <h2>Subplots</h2>
+                <div class="explanation">
+                    <strong>📖 Multiple Charts:</strong>
+                    <p>Subplots let you display multiple charts in a grid layout. <code>plt.subplots(rows, cols)</code> creates a figure and axes array. <code>tight_layout()</code> prevents overlapping elements.</p>
+                </div>
                 <pre><code class="language-python">import matplotlib.pyplot as plt
 
 fig, axes = plt.subplots(2, 2)
@@ -3038,10 +3632,14 @@ plt.show()</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Module 18</span>
                 <h2>Python Applications</h2>
+                <div class="explanation">
+                    <strong>📖 About This Module:</strong>
+                    <p>Apply everything you've learned to real-world scenarios. This module covers working with JSON data, processing files, and automating tasks - skills you'll use daily as a Python developer.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 30px;">
                     <h3>Learning Objectives</h3>
                     <ul>
-                        <li Working with JSON data</li>
+                        <li>Working with JSON data</li>
                         <li>Data processing scripts</li>
                         <li>Basic automation</li>
                     </ul>
@@ -3052,6 +3650,10 @@ plt.show()</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Applications</span>
                 <h2>Working with JSON Data</h2>
+                <div class="explanation">
+                    <strong>📖 API Communication:</strong>
+                    <p>JSON is the standard format for web APIs. <code>json.loads()</code> parses a JSON string into Python objects. <code>json.dumps()</code> converts Python objects to JSON strings. This is how your code talks to web services.</p>
+                </div>
                 <pre><code class="language-python">import json
 
 # Parse JSON string
@@ -3069,6 +3671,10 @@ print(json_string)</code></pre>
             <section class="slide-concept">
                 <span class="badge badge-concept">Applications</span>
                 <h2>Data Processing Scripts</h2>
+                <div class="explanation">
+                    <strong>📖 Batch Processing:</strong>
+                    <p>Python excels at processing text files in batch. Read a file, transform each line, and write the results. This pattern is used for log analysis, data cleaning, and ETL (Extract, Transform, Load) pipelines.</p>
+                </div>
                 <pre><code class="language-python"># Process text file
 def process_file(filename):
     with open(filename, 'r') as file:
@@ -3087,6 +3693,10 @@ def process_file(filename):
             <section class="slide-concept">
                 <span class="badge badge-concept">Applications</span>
                 <h2>Basic Automation</h2>
+                <div class="explanation">
+                    <strong>📖 Automate the Boring Stuff:</strong>
+                    <p>The <code>os</code> module lets you interact with the file system. Common automation tasks: batch renaming files, organizing folders, and processing documents. If you do it more than twice, automate it.</p>
+                </div>
                 <pre><code class="language-python">import os
 
 # List files in directory
@@ -3120,6 +3730,10 @@ for i, file in enumerate(os.listdir('.')):
             <section class="slide-example">
                 <span class="badge badge-example">Project</span>
                 <h2>Project: Expense Tracker</h2>
+                <div class="explanation">
+                    <strong>📖 Project Overview:</strong>
+                    <p>Build a personal finance tracker using OOP. Track expenses by category, calculate totals, and generate reports. This project combines classes, dictionaries, and list comprehensions.</p>
+                </div>
                 <pre><code class="language-python">class ExpenseTracker:
     def __init__(self):
         self.expenses = []
@@ -3148,6 +3762,10 @@ for i, file in enumerate(os.listdir('.')):
             <section class="slide-example">
                 <span class="badge badge-example">Project</span>
                 <h2>Project: Library Management</h2>
+                <div class="explanation">
+                    <strong>📖 Project Overview:</strong>
+                    <p>Create a library system with Book and Library classes. Track book availability, search by title, and manage checkouts. This project demonstrates class composition and real-world OOP design.</p>
+                </div>
                 <pre><code class="language-python">class Book:
     def __init__(self, title, author, isbn):
         self.title = title
@@ -3173,6 +3791,10 @@ class Library:
             <section class="slide-example">
                 <span class="badge badge-example">Project</span>
                 <h2>Project: Data Analysis</h2>
+                <div class="explanation">
+                    <strong>📖 Project Overview:</strong>
+                    <p>Perform a complete data analysis workflow: load data with Pandas, clean it, compute statistics, and visualize results with Matplotlib. This mirrors real-world data science tasks.</p>
+                </div>
                 <pre><code class="language-python">import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -3196,7 +3818,11 @@ plt.show()</code></pre>
             <!-- Slide 156: Dashboard Project -->
             <section class="slide-example">
                 <span class="badge badge-example">Project</span>
-                <h2>Project: Data Visualization Dashboard</h Maintainability</h2>
+                <h2>Project: Data Visualization Dashboard</h2>
+                <div class="explanation">
+                    <strong>📖 Project Overview:</strong>
+                    <p>Create a multi-chart dashboard using Matplotlib subplots. Combine line charts, bar charts, pie charts, and scatter plots in one figure. This is how business intelligence dashboards are built.</p>
+                </div>
                 <pre><code class="language-python">import matplotlib.pyplot as plt
 
 def create_dashboard(data):
@@ -3226,6 +3852,10 @@ def create_dashboard(data):
             <section class="slide-example">
                 <span class="badge badge-example">Project</span>
                 <h2>Capstone Project</h2>
+                <div class="explanation">
+                    <strong>📖 Final Challenge:</strong>
+                    <p>Combine everything you've learned into one comprehensive project. This is what you'd show in a job interview to demonstrate your Python skills.</p>
+                </div>
                 <div class="box box-green" style="margin-top: 20px;">
                     <h4>Requirements</h4>
                     <ul>
@@ -3243,6 +3873,10 @@ def create_dashboard(data):
             <section class="slide-concept">
                 <span class="badge badge-concept">Best Practices</span>
                 <h2>Python Best Practices</h2>
+                <div class="explanation">
+                    <strong>📖 Professional Code:</strong>
+                    <p>Writing code that works is the first step. Writing code that's readable, maintainable, and follows community standards is what separates professionals from beginners.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Code Style</h4>
@@ -3269,6 +3903,10 @@ def create_dashboard(data):
             <section class="slide-concept">
                 <span class="badge badge-concept">Best Practices</span>
                 <h2>Writing Clean Code</h2>
+                <div class="explanation">
+                    <strong>📖 Readability Counts:</strong>
+                    <p>Code is read far more often than it's written. Use descriptive names, keep functions focused on one task, and add docstrings to explain the "why" behind your code.</p>
+                </div>
                 <pre><code class="language-python"># Good: Clear and readable
 def calculate_area(radius):
     """Calculate the area of a circle."""
@@ -3288,6 +3926,10 @@ def send_email(to, subject, body):
             <section class="slide-concept">
                 <span class="badge badge-concept">Debugging</span>
                 <h2>Debugging Techniques</h2>
+                <div class="explanation">
+                    <strong>📖 Debugging Mindset:</strong>
+                    <p>Debugging is a systematic process, not guesswork. Reproduce the bug, isolate the cause, fix it, and verify the fix. Rubber duck debugging - explaining your code to an inanimate object - is surprisingly effective.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Tools</h4>
@@ -3314,6 +3956,10 @@ def send_email(to, subject, body):
             <section class="slide-mistake">
                 <span class="badge badge-mistake">Common Mistakes</span>
                 <h2>Common Python Errors</h2>
+                <div class="explanation">
+                    <strong>📖 Learn from Mistakes:</strong>
+                    <p>Every Python developer encounters these errors. Learning to recognize and fix them quickly is a key skill. The error message usually tells you exactly what went wrong and where.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Syntax Errors</h4>
@@ -3339,6 +3985,10 @@ def send_email(to, subject, body):
             <section class="slide-interview">
                 <span class="badge badge-interview">Interview</span>
                 <h2>Python Interview Questions</h2>
+                <div class="explanation">
+                    <strong>📖 Interview Prep:</strong>
+                    <p>These are commonly asked Python interview questions. Understanding the "why" behind each answer is more important than memorizing responses. Be ready to explain concepts with examples.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Basic</h4>
@@ -3365,6 +4015,10 @@ def send_email(to, subject, body):
             <section class="slide-concept">
                 <span class="badge badge-concept">Career</span>
                 <h2>Career Guidance</h2>
+                <div class="explanation">
+                    <strong>📖 Your Python Journey:</strong>
+                    <p>Python skills open doors to multiple career paths. The demand for Python developers continues to grow across industries. Choose a specialization that interests you and build projects in that area.</p>
+                </div>
                 <div class="two-col" style="margin-top: 20px;">
                     <div>
                         <h4>Job Roles</h4>
@@ -3391,6 +4045,10 @@ def send_email(to, subject, body):
             <section class="slide-concept">
                 <span class="badge badge-concept">Roadmap</span>
                 <h2>Learning Roadmap</h2>
+                <div class="explanation">
+                    <strong>📖 Never Stop Learning:</strong>
+                    <p>This bootcamp is just the beginning. The tech field evolves rapidly. Build a habit of continuous learning - even 30 minutes a day compounds into massive growth over time.</p>
+                </div>
                 <div class="box box-blue" style="margin-top: 20px;">
                     <h4>After This Course</h4>
                     <ul>
@@ -3405,7 +4063,7 @@ def send_email(to, subject, body):
 
             <!-- Slide 165: Certificate -->
             <section class="slide-title">
-                <h1>Certificate of Completion</h1>
+                <h1>🎓 Certificate of Completion</h1>
                 <p style="font-size: 1.2em; margin-top: 30px;">Congratulations!</p>
                 <p style="font-size: 0.9em; margin-top: 20px;">You have successfully completed the Complete Python Bootcamp.</p>
                 <div style="margin-top: 60px;">
@@ -3413,13 +4071,54 @@ def send_email(to, subject, body):
                 </div>
             </section>
 
-            <!-- Slide 166: Final Quiz -->
-            <section class="slide-interview">
-                <span class="badge badge-interview">Quiz</span>
-                <h2>Final Knowledge Check</h2>
-                <div class="box box-purple" style="margin-top: 20px;">
-                    <h4>Question 1</h4>
-                    <p>What is the output of: <code>print(2 ** 3)</code>?</p>
-                    <div class="quiz-option">6</div>
-                    <div class="quiz-option correct">8</div>
-                    <div class="quiz
+        
+            <!-- Slide 167: Thank You -->
+            <section class="slide-title">
+                <h1>🙏 Thank You!</h1>
+                <p style="font-size: 1.2em; margin-top: 30px;">You've completed the Complete Python Bootcamp</p>
+                <div class="explanation" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); margin-top: 40px;">
+                    <strong style="color: white;">📖 Final Words:</strong>
+                    <p style="color: rgba(255,255,255,0.9);">The best way to learn programming is by doing. Start building projects, contribute to open source, and never stop coding. The Python community is welcoming - don't hesitate to ask for help!</p>
+                </div>
+                <div style="margin-top: 40px;">
+                    <p style="font-size: 0.9em;">Happy Coding! 🚀</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            transition: 'slide',
+            transitionSpeed: 'fast',
+            backgroundTransition: 'fade',
+            center: true,
+            controls: true,
+            progress: true,
+            history: true,
+            keyboard: true,
+            overview: true,
+            touch: true,
+            loop: false,
+            rtl: false,
+            fragments: true,
+            embedded: false,
+            help: true,
+            showNotes: false,
+            autoSlide: 0,
+            autoSlideStoppable: true,
+            mouseWheel: false,
+            hideAddressBar: true,
+            previewLinks: false,
+            width: 1200,
+            height: 700,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0
+        });
+    </script>
+</body>
+</html>
