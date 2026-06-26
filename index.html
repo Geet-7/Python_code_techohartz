@@ -1891,13 +1891,17 @@ count = 5
 while count > 0:
     print(count)
     count -= 1
-print("Blast off!")
-
-# User input validation
-password = ""
-while password != "secret":
-    password = input("Enter password: ")
-print("Access granted!")</code></pre>
+print("Blast off!")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>5
+4
+3
+2
+1
+Blast off!
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 58: Nested Loops -->
@@ -2020,6 +2024,7 @@ Hello, Charlie!
                 <pre><code class="language-python"># Placeholder for future code
 for i in range(10):
     pass  # TODO: implement later
+print("Loop completed")
 
 # Empty class definition
 class MyClass:
@@ -2027,7 +2032,15 @@ class MyClass:
 
 # Empty function
 def my_function():
-    pass</code></pre>
+    pass
+
+print("Pass statement executed successfully")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Loop completed
+Pass statement executed successfully
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 62: Range Function -->
@@ -2591,6 +2604,18 @@ except ZeroDivisionError:
     print("Cannot divide by zero.")
 except Exception as e:
     print(f"An error occurred: {e}")</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code># Example: user enters 20
+Result: 5.0
+
+# Example: user enters "abc"
+Please enter a valid number.
+
+# Example: user enters 0
+Cannot divide by zero.
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 82: Else and Finally -->
@@ -2613,7 +2638,16 @@ else:
 finally:
     # Always runs
     print("Cleanup complete.")
-    file.close()</code></pre>
+    try:
+        file.close()
+    except NameError:
+        pass</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>File not found.
+Cleanup complete.
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 83: Module 7 Summary -->
@@ -2662,6 +2696,8 @@ finally:
                 </div>
                 <pre><code class="language-python"># Open file for reading
 file = open("data.txt", "r")
+print("File opened successfully")
+print(type(file))
 
 # Modes
 # "r" - Read (default)
@@ -2672,10 +2708,20 @@ file = open("data.txt", "r")
 
 # Always close files
 file.close()
+print("File closed")
 
 # Better: use context manager
 with open("data.txt", "r") as file:
-    content = file.read()</code></pre>
+    content = file.read()
+    print("Read content length:", len(content))</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>File opened successfully
+&lt;class '_io.TextIOWrapper'&gt;
+File closed
+Read content length: 42
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 86: Reading Files -->
@@ -2689,16 +2735,31 @@ with open("data.txt", "r") as file:
                 <pre><code class="language-python">with open("data.txt", "r") as file:
     # Read entire file
     content = file.read()
+    print("Content:", repr(content))
     
-    # Read line by line
+    # Reset file pointer and read line by line
+    file.seek(0)
     for line in file:
-        print(line.strip())
+        print("Line:", line.strip())
     
-    # Read all lines into list
+    # Reset and read all lines into list
+    file.seek(0)
     lines = file.readlines()
+    print("Lines:", lines)
     
-    # Read single line
-    first_line = file.readline()</code></pre>
+    # Reset and read single line
+    file.seek(0)
+    first_line = file.readline()
+    print("First line:", repr(first_line))</code></pre>
+                <div class="box box-green" style="margin-top: 15px;">
+                    <h4>Output</h4>
+                    <pre><code>Content: 'Hello, World!\nWelcome to Python.\n'
+Line: Hello, World!
+Line: Welcome to Python.
+Lines: ['Hello, World!\n', 'Welcome to Python.\n']
+First line: 'Hello, World!\n'
+</code></pre>
+                </div>
             </section>
 
             <!-- Slide 87: Writing Files -->
